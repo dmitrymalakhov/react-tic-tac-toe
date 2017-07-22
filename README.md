@@ -1,2 +1,3 @@
-# -noughtsanddaggers
-Simple  Noughts and daggers Game
+# Noughts and Daggers
+
+A simple implementation of the game "TIC TAC toe" using React.
