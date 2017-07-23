@@ -6,7 +6,7 @@
 
 import styled from 'styled-components';
 
-export const PlaygroundContainerStyled = styled.div`
+export const RootContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;

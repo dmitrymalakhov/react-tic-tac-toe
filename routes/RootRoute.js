@@ -8,17 +8,20 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { configureGame } from '../actions/game';
-import { PlaygroundContainer } from '../components/PlaygroundContainer';
+import { redirectToPath } from '../actions/app';
+import { RootContainer } from '../components/RootContainer';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { noop } from '../utils/misc';
 
 const propTypes = {
   onConfigureGame: PropTypes.func,
+  onRedirectToPath: PropTypes.func,
 };
 
 const defaultProps = {
   onConfigureGame: noop,
+  onRedirectToPath: noop,
 };
 
 class RootRoute extends PureComponent {
@@ -45,6 +48,7 @@ class RootRoute extends PureComponent {
     ];
 
     this.props.onConfigureGame(size, players);
+    this.props.onRedirectToPath('/playingboard');
   }
 
   _handleChangePlayerName1 = value => {
@@ -61,7 +65,7 @@ class RootRoute extends PureComponent {
 
   render() {
     return (
-      <PlaygroundContainer>
+      <RootContainer>
         <Input
           label="Player #1"
           placeholder="Name"
@@ -78,7 +82,7 @@ class RootRoute extends PureComponent {
           label="To start the battle!"
           onClick={this._handleClickStartGame}
         />
-      </PlaygroundContainer>
+      </RootContainer>
     );
   }
 }
@@ -91,6 +95,7 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   onConfigureGame: (size, players) =>
     void dispatch(configureGame(size, players)),
+  onRedirectToPath: routeName => void dispatch(redirectToPath(routeName)),
 });
 
 export default connect(
