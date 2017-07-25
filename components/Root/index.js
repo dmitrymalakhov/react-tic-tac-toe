@@ -9,12 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-import RootRoute from '../../routes/RootRoute';
-import PlayingboardRoute from '../../routes/PlayingboardRoute';
 import { injectGlobalStyle } from '../../styles/globalStyles';
-import SCTransition from '../SCTransition';
-
-import { Button } from '../Button';
+import ShallowRoute from '../../routes/ShallowRoute';
 
 const propTypes = {
   routeName: PropTypes.string,
@@ -25,40 +21,6 @@ const defaultProps = {
 };
 
 injectGlobalStyle();
-
-class AnimationRouter extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      run: false,
-    };
-  }
-
-  onClick = () => {
-    this.setState({
-      run: true,
-    })
-  }
-
-  render() {
-    return (
-      <SCTransition transitionOut run={this.state.run}>
-        <Button onClick={this.onClick} />
-        <RootRoute />
-      </SCTransition>
-    )
-  }
-}
-
-const ShallowRouter = ({ location }) => (
-  <Route
-    location={location}
-    key={location.key}
-    path="/:pathname"
-    component={AnimationRouter}
-  />
-);
 
 const HeaderTitle = styled.div`
   text-align: center;
@@ -94,7 +56,7 @@ class Root extends PureComponent {
           <HeaderTitle>
             Noughts and Daggers Game
           </HeaderTitle>
-          <Route render={ShallowRouter} />
+          <Route render={ShallowRoute} />
           {redirect}
         </div>
       </BrowserRouter>
@@ -109,5 +71,7 @@ Root.displayName = 'Root';
 const mapStateToProps = ({ app }) => ({
   routeName: app.routeName,
 });
+
+
 
 export default connect(mapStateToProps)(Root);
