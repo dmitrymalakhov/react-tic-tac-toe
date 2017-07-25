@@ -23,7 +23,7 @@ const opacity = ({ transitionIn, run }) => {
   `;
 };
 
-export const InputStyled = () => styled.div`
+export const SCTransitionStyled = () => styled.div`
   ${opacity}
   transition: all .75s ease;
 `;
