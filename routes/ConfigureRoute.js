@@ -24,7 +24,7 @@ const defaultProps = {
   onRedirectToPath: noop,
 };
 
-class RootRoute extends PureComponent {
+class ConfigureRoute extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -87,9 +87,9 @@ class RootRoute extends PureComponent {
   }
 }
 
-RootRoute.propTypes = propTypes;
-RootRoute.defaultProps = defaultProps;
-RootRoute.displayName = 'RootRoute';
+ConfigureRoute.propTypes = propTypes;
+ConfigureRoute.defaultProps = defaultProps;
+ConfigureRoute.displayName = 'ConfigureRoute';
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
@@ -101,4 +101,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(RootRoute);
+)(ConfigureRoute);

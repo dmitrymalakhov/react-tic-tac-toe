@@ -47,7 +47,7 @@ class Root extends PureComponent {
     };
 
     const redirect = this.state.redirectToRefferer
-      ? <Redirect push to={redirectOptions} />
+      ? <Redirect to={redirectOptions} />
       : null;
 
     return (

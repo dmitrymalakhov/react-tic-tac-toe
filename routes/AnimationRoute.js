@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import RootRoute from './RootRoute';
+import ConfigureRoute from './ConfigureRoute';
 import PlayingboardRoute from './PlayingboardRoute';
 import SCTransition from '../components/SCTransition';
 
@@ -27,8 +27,7 @@ class AnimationRoute extends PureComponent {
       this.setState((prevState, props) => ({
         prevPathname: nextProps.location.pathname,
         nextPathname: nextProps.routeName,
-        transitionOut: true,
-        transitionIn: false,
+        animate: false,
       }));
 
       this._neededAnimateAfterRender = true;
@@ -49,11 +48,11 @@ class AnimationRoute extends PureComponent {
   _getRouteByPathname(pathname) {
     switch (pathname) {
       case '/configure':
-        return RootRoute;
+        return ConfigureRoute;
       case '/playingboard':
         return PlayingboardRoute;
       default:
-        return RootRoute;
+        return ConfigureRoute;
     }
   }
 
@@ -63,18 +62,6 @@ class AnimationRoute extends PureComponent {
 
   _getNextRoute() {
     return this._getRouteByPathname(this.state.nextPathname);
-  }
-
-  _renderTransitionRoute() {
-    const { transitionOut } = this.state;
-
-    const PrevRoute = this._getPrevRoute(),
-      NextRoute = this._getNextRoute();
-
-    if (transitionOut)
-      return <PrevRoute />;
-
-    return <NextRoute />;
   }
 
   _handleLeaveAnimateRoute = () => {
@@ -94,20 +81,18 @@ class AnimationRoute extends PureComponent {
   }
 
   render() {
-    const { transitionIn, transitionOut, animate } = this.state;
+    const { animate } = this.state;
 
-    const transitionRoute = this._renderTransitionRoute();
+    const PrevRoute = this._getPrevRoute(),
+      NextRoute = this._getNextRoute();
 
     return (
       <div>
-        <SCTransition
-          transitionIn={transitionIn}
-          transitionOut={transitionOut}
-          animate={animate}
-          onLeave={this._handleLeaveAnimateRoute}
-          onEnter={this._handleEnterAnimateRoute}
-        >
-          {transitionRoute}
+        <SCTransition transitionOut animate={animate}>
+          <PrevRoute />
+        </SCTransition>
+        <SCTransition transitionIn animate={animate}>
+          <NextRoute />
         </SCTransition>
       </div>
     );

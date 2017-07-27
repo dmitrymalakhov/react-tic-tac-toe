@@ -14,7 +14,7 @@ const propTypes = {
 
 const defaultProps = {
   location: {},
-}
+};
 
 const ShallowRoute = ({ location }) => (
   <div>
