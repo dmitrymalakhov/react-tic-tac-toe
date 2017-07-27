@@ -7,10 +7,10 @@
 import styled from 'styled-components';
 
 const opacity = ({ transitionIn, transitionOut, animate }) => {
-  let opacity = 0;
+  let opacity = 1;
 
-  if (transitionIn && animate)
-    opacity = 1;
+  if (transitionIn)
+    opacity = animate ? 1 : 0;
   else if (transitionOut)
     opacity = animate ? 0 : 1;
 
