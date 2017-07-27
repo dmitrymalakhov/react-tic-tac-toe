@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
 import AnimationRoute from './AnimationRoute';
 import RedirectToConfigureRoute from './RedirectToConfigureRoute';
 
 const propTypes = {
+  routeName: PropTypes.string,
   location: PropTypes.shape({
     hash: PropTypes.string,
     key: PropTypes.string,
@@ -13,23 +15,51 @@ const propTypes = {
 };
 
 const defaultProps = {
+  routeName: '/',
   location: {},
 };
 
-const ShallowRoute = ({ location }) => (
-  <div>
-    <Route exact path="/" component={RedirectToConfigureRoute} />
-    <Route
-      location={location}
-      key={location.key}
-      path="/:pathname"
-      component={AnimationRoute}
-    />
-  </div>
-);
+class ShallowRoute extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      redirectToRefferer: false,
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      redirectToRefferer: this.props.routeName !== nextProps.routeName,
+    });
+  }
+
+  render() {
+    const redirect = this.state.redirectToRefferer
+      ? <Redirect to={this.props.routeName} />
+      : null;
+
+    return (
+      <div>
+        <Route exact path="/" component={RedirectToConfigureRoute} />
+        <Route
+          location={this.props.location}
+          key={this.props.location.key}
+          path="/:pathname"
+          component={AnimationRoute}
+        />
+        {redirect}
+      </div>
+    );
+  }
+}
 
 ShallowRoute.propTypes = propTypes;
 ShallowRoute.defaultProps = defaultProps;
 ShallowRoute.displayName = 'ShallowRoute';
 
-export default ShallowRoute;
+const mapStateToProps = ({ app }) => ({
+  routeName: app.routeName,
+});
+
+export default connect(mapStateToProps)(ShallowRoute);
