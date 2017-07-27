@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import AnimationRoute from './AnimationRoute';
-import RedirectRoute from './RedirectRoute';
+import RedirectToConfigureRoute from './RedirectToConfigureRoute';
 
 const propTypes = {
   location: PropTypes.shape({
@@ -18,7 +18,7 @@ const defaultProps = {
 
 const ShallowRoute = ({ location }) => (
   <div>
-    <Route exact path="/" component={RedirectRoute} />
+    <Route exact path="/" component={RedirectToConfigureRoute} />
     <Route
       location={location}
       key={location.key}

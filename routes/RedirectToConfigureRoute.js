@@ -12,7 +12,7 @@ const defaultProps = {
   onRedirectToPath: noop,
 };
 
-class RedirectRoute extends PureComponent {
+class RedirectToConfigureRoute extends PureComponent {
   componentWillMount() {
     this.props.onRedirectToPath('/configure');
   }
@@ -26,13 +26,16 @@ class RedirectRoute extends PureComponent {
   }
 }
 
-RedirectRoute.propTypes = propTypes;
-RedirectRoute.defaultProps = defaultProps;
-RedirectRoute.displayName = 'RedirectRoute';
+RedirectToConfigureRoute.propTypes = propTypes;
+RedirectToConfigureRoute.defaultProps = defaultProps;
+RedirectToConfigureRoute.displayName = 'RedirectRoute';
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   onRedirectToPath: routeName => void dispatch(redirectToPath(routeName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RedirectRoute);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RedirectToConfigureRoute);
