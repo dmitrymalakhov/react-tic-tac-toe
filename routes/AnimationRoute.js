@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { connect } from 'react-redux';
 import RootRoute from './RootRoute';
 import PlayingboardRoute from './PlayingboardRoute';
 import SCTransition from '../components/SCTransition';
@@ -18,14 +19,14 @@ class AnimationRoute extends PureComponent {
     this._neededAnimateAfterRender = false;
   }
 
-  componentWillReceiveProps(nextProps, prevState) {
+  componentWillReceiveProps(nextProps) {
     if (
-      nextProps.location.pathname !== prevState.nextPathname &&
+      nextProps.location.pathname !== nextProps.routeName &&
       !this._neededAnimateAfterRender
     ) {
       this.setState((prevState, props) => ({
-        prevPathname: prevState.nextPathname,
-        nextPathname: props.location.pathname,
+        prevPathname: nextProps.location.pathname,
+        nextPathname: nextProps.routeName,
         transitionOut: true,
         transitionIn: false,
       }));
@@ -115,4 +116,8 @@ class AnimationRoute extends PureComponent {
 
 AnimationRoute.displayName = 'AnimationRoute';
 
-export default AnimationRoute;
+const mapStateToProps = ({ app }) => ({
+  routeName: app.routeName,
+});
+
+export default connect(mapStateToProps)(AnimationRoute);
