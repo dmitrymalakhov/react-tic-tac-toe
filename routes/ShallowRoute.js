@@ -26,9 +26,17 @@ class ShallowRoute extends PureComponent {
     this.state = {
       redirectToRefferer: false,
     };
+
+    this._prevPathname = null;
+    this._currenPathname = props.location.pathname;
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this._currenPathname !== nextProps.location.pathname) {
+      this._prevPathname = this._currenPathname;
+      this._currenPathname = nextProps.location.pathname;
+    }
+
     this.setState({
       redirectToRefferer: this.props.routeName !== nextProps.routeName,
     });
@@ -46,7 +54,12 @@ class ShallowRoute extends PureComponent {
           location={this.props.location}
           key={this.props.location.key}
           path="/:pathname"
-          component={AnimationRoute}
+          render={props => (
+            <AnimationRoute
+              {...props}
+              prevPathname={this._prevPathname}
+            />
+          )}
         />
         {redirect}
       </div>

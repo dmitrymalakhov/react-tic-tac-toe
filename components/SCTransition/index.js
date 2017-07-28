@@ -6,17 +6,15 @@ import { noop } from '../../utils/misc';
 const propTypes = {
   transitionIn: PropTypes.bool,
   transitionOut: PropTypes.bool,
-  animate: PropTypes.bool,
-  onEnter: PropTypes.func,
-  onLeave: PropTypes.func,
+  onTransitionIn: PropTypes.func,
+  onTransitionOut: PropTypes.func,
 };
 
 const defaultProps = {
   transitionIn: false,
   transitionOut: false,
-  animate: false,
-  onEnter: noop,
-  onLeave: noop,
+  onTransitionIn: noop,
+  onTransitionOut: noop,
 };
 
 export default class SCTransition extends PureComponent {
@@ -28,11 +26,17 @@ export default class SCTransition extends PureComponent {
 
   componentDidMount() {
     this._domNode.addEventListener('transitionend', this._handleTransitionEnd);
+    this._domNode.addEventListener('animationend', this._handleTransitionEnd);
   }
 
   componentWillUnmount() {
     this._domNode.removeEventListener(
       'transitionend',
+      this._handleTransitionEnd,
+    );
+
+    this._domNode.removeEventListener(
+      'animationend',
       this._handleTransitionEnd,
     );
   }
@@ -41,10 +45,10 @@ export default class SCTransition extends PureComponent {
     const { transitionIn, transitionOut } = this.props;
 
     if (transitionIn)
-      this.props.onEnter();
+      this.props.onTransitionIn();
 
     if (transitionOut)
-      this.props.onLeave();
+      this.props.onTransitionOut();
   }
 
   _saveRef = ref => {
@@ -52,14 +56,13 @@ export default class SCTransition extends PureComponent {
   }
 
   render() {
-    const { transitionIn, transitionOut, animate, children } = this.props;
+    const { transitionIn, transitionOut, children } = this.props;
 
     return (
       <SCTransitionStyled
         innerRef={this._saveRef}
         transitionIn={transitionIn}
         transitionOut={transitionOut}
-        animate={animate}
       >
         {children}
       </SCTransitionStyled>

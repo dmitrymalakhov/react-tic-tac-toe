@@ -1,103 +1,78 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import ConfigureRoute from './ConfigureRoute';
 import PlayingboardRoute from './PlayingboardRoute';
 import SCTransition from '../components/SCTransition';
+
+const propTypes = {
+  location: PropTypes.shape({
+    hash: PropTypes.string,
+    key: PropTypes.string,
+    pathname: PropTypes.string,
+  }),
+};
+
+const defaultProps = {
+  location: {},
+}
 
 class AnimationRoute extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      animate: false,
-      transitionIn: false,
-      transitionOut: false,
-      prevPathname: '',
-      nextPathname: props.location.pathname,
+      prevRouteAnimationEnded: false,
+      currentPathname: props.location.pathname,
     };
-
-    this._neededAnimateAfterRender = false;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.location.pathname !== this.props.location.pathname &&
-      !this._neededAnimateAfterRender
-    ) {
-      this.setState((prevState, props) => ({
-        prevPathname: props.location.pathname,
-        nextPathname: nextProps.location.pathname,
-        animate: false,
-      }));
-
-      this._neededAnimateAfterRender = true;
-    }
-  }
-
-  componentDidUpdate() {
-    if (this._neededAnimateAfterRender)
-      this._dangerouslyUpdateAnimationState();
-  }
-
-  _dangerouslyUpdateAnimationState() {
-    this.setState({
-      animate: true,
-    });
   }
 
   _getRouteByPathname(pathname) {
     switch (pathname) {
       case '/configure':
-        return ConfigureRoute;
+        return <ConfigureRoute />;
       case '/playingboard':
-        return PlayingboardRoute;
+        return <PlayingboardRoute />;
       default:
-        return ConfigureRoute;
+        return null;
     }
   }
 
-  _getPrevRoute() {
-    return this._getRouteByPathname(this.state.prevPathname);
+  _renderPrevRoute() {
+    if (this.state.prevRouteAnimationEnded)
+      return null;
+
+    return this._getRouteByPathname(this.props.prevPathname);
   }
 
-  _getNextRoute() {
-    return this._getRouteByPathname(this.state.nextPathname);
+  _renderNextRoute() {
+    return this._getRouteByPathname(this.props.location.pathname);
   }
 
-  _handleLeaveAnimateRoute = () => {
+  _handleTransitionOut = () => {
     this.setState({
-      transitionOut: false,
-      transitionIn: true,
-      animate: false,
-    });
-  }
-
-  _handleEnterAnimateRoute = () => {
-    this.setState({
-      animate: false,
-    });
-
-    this._neededAnimateAfterRender = false;
+      prevRouteAnimationEnded: true,
+    })
   }
 
   render() {
-    const { animate } = this.state;
-
-    const PrevRoute = this._getPrevRoute(),
-      NextRoute = this._getNextRoute();
+    const PrevRoute = this._renderPrevRoute(),
+      NextRoute = this._renderNextRoute();
 
     return (
       <div>
-        <SCTransition transitionOut animate={animate}>
-          <PrevRoute />
+        <SCTransition transitionOut onTransitionOut={this._handleTransitionOut}>
+          {PrevRoute}
         </SCTransition>
-        <SCTransition transitionIn animate={animate}>
-          <NextRoute />
+        <SCTransition transitionIn>
+          {NextRoute}
         </SCTransition>
       </div>
     );
   }
 }
 
+AnimationRoute.propTypes = propTypes;
+AnimationRoute.defaultProps = defaultProps;
 AnimationRoute.displayName = 'AnimationRoute';
 
 export default AnimationRoute;

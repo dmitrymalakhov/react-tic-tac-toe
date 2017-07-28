@@ -6,20 +6,26 @@
 
 import styled from 'styled-components';
 
-const opacity = ({ transitionIn, transitionOut, animate }) => {
-  let opacity = 1;
-
-  if (transitionIn)
-    opacity = animate ? 1 : 0;
-  else if (transitionOut)
-    opacity = animate ? 0 : 1;
+const animation = ({ transitionOut }) => {
+  const animationType = transitionOut
+    ? 'transitionOut'
+    : 'transitionIn';
 
   return `
-    opacity: ${opacity};
+    animation: ${animationType} 2s ease-in-out;
   `;
 };
 
 export const SCTransitionStyled = styled.div`
-  transition: opacity 0.3s ease-out 0.3s;
-  ${opacity}
+  ${animation}
+
+  @keyframes transitionIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes transitionOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 `;
