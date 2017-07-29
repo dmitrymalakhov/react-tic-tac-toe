@@ -34,7 +34,10 @@ class PlayingboardRoute extends Component {
       <RouteContainer>
         <PlayingboardRouteContainer>
           PlayingboardRoute
-          <Button onClick={this._handleRedirectToConfigure} />
+          <Button
+            label="Back to configure"
+            onClick={this._handleRedirectToConfigure}
+          />
         </PlayingboardRouteContainer>
       </RouteContainer>
     );
