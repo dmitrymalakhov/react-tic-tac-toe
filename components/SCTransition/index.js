@@ -1,3 +1,9 @@
+/**
+ * @author Dmitry Malakhov
+ */
+
+'use strict';
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { SCTransitionStyled } from './styled/SCTransitionStyled';

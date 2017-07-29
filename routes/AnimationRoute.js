@@ -1,3 +1,9 @@
+/**
+ * @author Dmitry Malakhov
+ */
+
+'use strict';
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ConfigureRoute from './ConfigureRoute';
@@ -5,6 +11,7 @@ import PlayingboardRoute from './PlayingboardRoute';
 import SCTransition from '../components/SCTransition';
 
 const propTypes = {
+  prevPathname: PropTypes.string,
   location: PropTypes.shape({
     hash: PropTypes.string,
     key: PropTypes.string,
@@ -13,8 +20,9 @@ const propTypes = {
 };
 
 const defaultProps = {
+  prevPathname: '/',
   location: {},
-}
+};
 
 class AnimationRoute extends PureComponent {
   constructor(props) {
@@ -51,7 +59,7 @@ class AnimationRoute extends PureComponent {
   _handleTransitionOut = () => {
     this.setState({
       prevRouteAnimationEnded: true,
-    })
+    });
   }
 
   render() {

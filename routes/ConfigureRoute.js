@@ -9,9 +9,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { configureGame } from '../actions/game';
 import { redirectToPath } from '../actions/app';
-import { RootContainer } from '../components/RootContainer';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
+import RouteContainer from '../containers/RouteContainer';
+import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { noop } from '../utils/misc';
 
 const propTypes = {
@@ -65,24 +66,26 @@ class ConfigureRoute extends PureComponent {
 
   render() {
     return (
-      <RootContainer>
-        <Input
-          label="Player #1"
-          placeholder="Name"
-          value={this.state.playerName1}
-          onChange={this._handleChangePlayerName1}
-        />
-        <Input
-          label="Player #2"
-          placeholder="Name"
-          value={this.state.playerName2}
-          onChange={this._handleChangePlayerName2}
-        />
-        <Button
-          label="To start the battle!"
-          onClick={this._handleClickStartGame}
-        />
-      </RootContainer>
+      <RouteContainer>
+        <ConfigureRouteContainer>
+          <Input
+            label="Player #1"
+            placeholder="Name"
+            value={this.state.playerName1}
+            onChange={this._handleChangePlayerName1}
+          />
+          <Input
+            label="Player #2"
+            placeholder="Name"
+            value={this.state.playerName2}
+            onChange={this._handleChangePlayerName2}
+          />
+          <Button
+            label="To start the battle!"
+            onClick={this._handleClickStartGame}
+          />
+        </ConfigureRouteContainer>
+      </RouteContainer>
     );
   }
 }
