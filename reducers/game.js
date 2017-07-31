@@ -8,7 +8,7 @@ import { createReducer } from 'redux-act';
 import { configureGame } from '../actions/game';
 
 const initiaState = {
-  size: 0,
+  size: 3,
   players: [],
 };
 

@@ -9,6 +9,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { redirectToPath } from '../actions/app';
 import { Button } from '../components/Button';
+import { Cell } from '../components/Cell';
+import { Row } from '../components/Row';
 import RouteContainer from '../containers/RouteContainer';
 
 import PlayingboardRouteContainer from
@@ -17,6 +19,7 @@ import PlayingboardRouteContainer from
 import { noop } from '../utils/misc';
 
 const propTypes = {
+  size: PropTypes.number,
   onRedirectToPath: PropTypes.func,
 };
 
@@ -29,11 +32,27 @@ class PlayingboardRoute extends Component {
     this.props.onRedirectToPath('/configure');
   }
 
+  _renderRows() {
+    return Array.from({ length: this.props.size }, (value, rowNum) => {
+      const cells = Array.from({ length: this.props.size },
+        (value, cellNum) => <Cell num={cellNum} row={rowNum} />
+      );
+
+      return (
+        <Row>
+          {cells}
+        </Row>
+      );
+    });
+  }
+
   render() {
+    const rows = this._renderRows();
+
     return (
       <RouteContainer>
         <PlayingboardRouteContainer>
-          PlayingboardRoute
+          { rows }
           <Button
             label="Back to configure"
             onClick={this._handleRedirectToConfigure}
@@ -48,7 +67,9 @@ PlayingboardRoute.propTypes = propTypes;
 PlayingboardRoute.defaultProps = defaultProps;
 PlayingboardRoute.displayName = 'PlayingboardRoute';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ game }) => ({
+  size: game.size,
+});
 
 const mapDispatchToProps = dispatch => ({
   onRedirectToPath: routeName => void dispatch(redirectToPath(routeName)),
