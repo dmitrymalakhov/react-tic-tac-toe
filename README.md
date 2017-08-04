@@ -11,4 +11,8 @@ npm start
 
 Open your browser to 0.0.0.0:8090
 
-Would be cool, if you write to me about not compliance the best practices of programming to React stack.
+**Plans for the near future**
+
+Add Flow, Jest Snapshot testing, SSR, React Native implementation.
+
+Would be cool, if you write to me about non compliance the best practices of programming in stack of React.
