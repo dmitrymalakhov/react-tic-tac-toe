@@ -11,7 +11,7 @@ npm start
 
 Open your browser to 0.0.0.0:8090
 
-**Plans for the near future**
+## Plans for the near future
 
 Add Flow, Jest Snapshot testing, SSR, React Native implementation.
 
