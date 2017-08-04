@@ -8,7 +8,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { configureGame } from '../actions/game';
-import { redirectToPath } from '../actions/app';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
@@ -17,12 +16,10 @@ import { noop } from '../utils/misc';
 
 const propTypes = {
   onConfigureGame: PropTypes.func,
-  onRedirectToPath: PropTypes.func,
 };
 
 const defaultProps = {
   onConfigureGame: noop,
-  onRedirectToPath: noop,
 };
 
 class ConfigureRoute extends PureComponent {
@@ -49,7 +46,6 @@ class ConfigureRoute extends PureComponent {
     ];
 
     this.props.onConfigureGame(size, players);
-    this.props.onRedirectToPath('/playingboard');
   }
 
   _handleChangePlayerName1 = value => {
@@ -98,7 +94,6 @@ const mapStateToProps = () => ({});
 const mapDispatchToProps = dispatch => ({
   onConfigureGame: (size, players) =>
     void dispatch(configureGame(size, players)),
-  onRedirectToPath: routeName => void dispatch(redirectToPath(routeName)),
 });
 
 export default connect(

@@ -8,6 +8,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ConfigureRoute from './ConfigureRoute';
 import PlayingboardRoute from './PlayingboardRoute';
+import FinishRoute from './FinishRoute';
 import SCTransition from '../components/SCTransition';
 
 const propTypes = {
@@ -40,6 +41,8 @@ class AnimationRoute extends PureComponent {
         return <ConfigureRoute />;
       case '/playingboard':
         return <PlayingboardRoute />;
+      case '/finish':
+        return <FinishRoute />;
       default:
         return null;
     }
