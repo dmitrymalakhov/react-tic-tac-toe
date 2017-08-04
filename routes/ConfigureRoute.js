@@ -15,10 +15,20 @@ import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { noop } from '../utils/misc';
 
 const propTypes = {
+  players: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    })
+  ),
   onConfigureGame: PropTypes.func,
 };
 
 const defaultProps = {
+  players: [
+    {
+      name: '',
+    },
+  ],
   onConfigureGame: noop,
 };
 
@@ -27,8 +37,8 @@ class ConfigureRoute extends PureComponent {
     super(props);
 
     this.state = {
-      playerName1: '',
-      playerName2: '',
+      playerName1: props.players[0].name,
+      playerName2: props.players[1].name,
       size: 3,
     };
   }
@@ -38,10 +48,10 @@ class ConfigureRoute extends PureComponent {
 
     const players = [
       {
-        name: playerName1 || 'Player #1',
+        name: playerName1,
       },
       {
-        name: playerName2 || 'Player #2',
+        name: playerName2,
       },
     ];
 
@@ -90,7 +100,10 @@ ConfigureRoute.propTypes = propTypes;
 ConfigureRoute.defaultProps = defaultProps;
 ConfigureRoute.displayName = 'ConfigureRoute';
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ game }) => ({
+  players: game.players,
+});
+
 const mapDispatchToProps = dispatch => ({
   onConfigureGame: (size, players) =>
     void dispatch(configureGame(size, players)),

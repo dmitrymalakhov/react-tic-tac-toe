@@ -11,6 +11,7 @@ import {
   toggleCellMode,
   togglePlayer,
   gameEnd,
+  resetGameState,
 } from '../actions/game';
 
 import {
@@ -55,5 +56,11 @@ export default createReducer({
   [gameEnd]: state => ({
     ...state,
     status: GAME_END,
+  }),
+  [resetGameState]: state => ({
+    ...state,
+    status: GAME_CONFIGURE,
+    moveAmount: 0,
+    playingboard: Playingboard,
   }),
 }, initialState);

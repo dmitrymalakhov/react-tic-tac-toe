@@ -64,7 +64,7 @@ const checkAntidiagonal = playingboard => {
   let result = 0;
 
   for (let index = 0; index < size; index++)
-    result += playingboard.getIn([size - index, index]);
+    result += playingboard.getIn([size - index - 1, index]);
 
   return Math.abs(result) === size;
 };
@@ -132,8 +132,14 @@ export const gameConfiguredComplete = createAction(
   (size, players) => ({ size, players }),
 );
 
-
 export const configureGame = (size, players) => dispatch => {
   dispatch(gameConfiguredComplete(size, players));
   dispatch(redirectToPath('/playingboard'));
+};
+
+export const resetGameState = createAction('RESET_GAME');
+
+export const restartGame = () => dispatch => {
+  dispatch(resetGameState());
+  dispatch(redirectToPath('/configure'));
 };
