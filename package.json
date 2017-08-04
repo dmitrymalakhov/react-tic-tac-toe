@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./build-conf/webpack.config.js",
+    "lint": "eslint .",
+    "lint:style": "stylelint './components/**/styled/*.js'",
     "build": "webpack --config ./build-conf/webpack.config.js",
     "build:prod": "rm -rf public/** && npm run build --production",
     "build:dev": "npm run build",
@@ -55,6 +57,9 @@
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "react-hot-loader": "^3.0.0-beta.7",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-processor-styled-components": "^0.2.1",
     "webpack": "^3.4.1",
     "webpack-dev-server": "^2.6.1",
     "webpack-merge": "^4.1.0"
