@@ -23,6 +23,7 @@ const initialState = {
   ],
   playingboard: Playingboard,
   currentPlayer: 0,
+  moveAmount: 0,
 };
 
 export default createReducer({
@@ -33,6 +34,8 @@ export default createReducer({
       [rowNum, cellNum],
       state.currentPlayer === 1 ? 1 : -1,
     ),
+    lastCell: [rowNum, cellNum],
+    moveAmount: state.moveAmount + 1,
   }),
   [togglePlayer]: state => ({
     ...state,
