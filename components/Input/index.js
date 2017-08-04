@@ -13,7 +13,10 @@ import { noop } from '../../utils/misc';
 const propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   onChange: PropTypes.func,
 };
 

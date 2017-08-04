@@ -7,12 +7,13 @@
 import { List } from 'immutable';
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
 
-const MATRIX_GENERATOR_CONFIG = { length: DEFAULT_SIZE_PLAYINGBOARD };
+const matrixGeneratorConfig = size => ({ length: size });
 
-const initialMatrix = Array.from(MATRIX_GENERATOR_CONFIG, () =>
-  List(Array.from(MATRIX_GENERATOR_CONFIG, () => 0))
+export const initialMatrix = size => Array.from(
+  matrixGeneratorConfig(size),
+  () => List(Array.from(matrixGeneratorConfig(size), () => 0)),
 );
 
-const Playingboard = List(initialMatrix);
+const Playingboard = List(initialMatrix(DEFAULT_SIZE_PLAYINGBOARD));
 
 export default Playingboard;

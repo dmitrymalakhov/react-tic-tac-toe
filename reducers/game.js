@@ -5,6 +5,7 @@
 'use strict';
 
 import { createReducer } from 'redux-act';
+import { List } from 'immutable';
 
 import {
   gameConfiguredComplete,
@@ -20,7 +21,8 @@ import {
   GAME_RUN,
   GAME_END,
 } from '../constants/game';
-import Playingboard from '../models/playingboard';
+
+import Playingboard, { initialMatrix } from '../models/playingboard';
 
 const initialState = {
   size: DEFAULT_SIZE_PLAYINGBOARD,
@@ -35,9 +37,11 @@ const initialState = {
 };
 
 export default createReducer({
-  [gameConfiguredComplete]: (state, payload) => ({
+  [gameConfiguredComplete]: (state, { players, size }) => ({
     ...state,
-    ...payload,
+    players,
+    size,
+    playingboard: List(initialMatrix(size)),
     status: GAME_RUN,
   }),
   [toggleCellMode]: (state, { rowNum, cellNum }) => ({

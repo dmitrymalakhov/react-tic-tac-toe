@@ -12,7 +12,8 @@ import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
 import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
-import { noop } from '../utils/misc';
+import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
+import { noop, isNumeric, fastParseNumberFromString } from '../utils/misc';
 
 const propTypes = {
   players: PropTypes.arrayOf(
@@ -20,6 +21,7 @@ const propTypes = {
       name: PropTypes.string,
     })
   ),
+  size: PropTypes.number,
   onConfigureGame: PropTypes.func,
 };
 
@@ -29,6 +31,7 @@ const defaultProps = {
       name: '',
     },
   ],
+  size: DEFAULT_SIZE_PLAYINGBOARD,
   onConfigureGame: noop,
 };
 
@@ -39,7 +42,7 @@ class ConfigureRoute extends PureComponent {
     this.state = {
       playerName1: props.players[0].name,
       playerName2: props.players[1].name,
-      size: 3,
+      size: props.size,
     };
   }
 
@@ -70,6 +73,14 @@ class ConfigureRoute extends PureComponent {
     });
   }
 
+  _handleChangeSize = value => {
+    if (isNumeric(value) || !value) {
+      this.setState({
+        size: fastParseNumberFromString(value) || value,
+      });
+    }
+  }
+
   render() {
     return (
       <RouteContainer>
@@ -85,6 +96,12 @@ class ConfigureRoute extends PureComponent {
             placeholder="Name"
             value={this.state.playerName2}
             onChange={this._handleChangePlayerName2}
+          />
+          <Input
+            label="Size"
+            placeholder="Default size: 3"
+            value={this.state.size}
+            onChange={this._handleChangeSize}
           />
           <Button
             label="To start the battle!"
@@ -102,6 +119,7 @@ ConfigureRoute.displayName = 'ConfigureRoute';
 
 const mapStateToProps = ({ game }) => ({
   players: game.players,
+  size: game.size,
 });
 
 const mapDispatchToProps = dispatch => ({
