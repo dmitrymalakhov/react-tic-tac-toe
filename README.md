@@ -7,7 +7,6 @@ A simple implementation of the game "TIC TAC toe" using React.
 ```
 npm install
 npm start
-
 ```
 
 Open your browser to 0.0.0.0:8090
