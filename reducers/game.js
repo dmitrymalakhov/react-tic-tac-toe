@@ -5,13 +5,37 @@
 'use strict';
 
 import { createReducer } from 'redux-act';
-import { configureGame } from '../actions/game';
 
-const initiaState = {
-  size: 3,
-  players: [],
+import {
+  configureGame,
+  toggleCellMode,
+  togglePlayer,
+} from '../actions/game';
+
+import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
+import Playingboard from '../models/playingboard';
+
+const initialState = {
+  size: DEFAULT_SIZE_PLAYINGBOARD,
+  players: [
+    { name: 'Player #1' },
+    { name: 'Player #2' },
+  ],
+  playingboard: Playingboard,
+  currentPlayer: 0,
 };
 
 export default createReducer({
   [configureGame]: (state, payload) => ({ ...state, ...payload }),
-}, initiaState);
+  [toggleCellMode]: (state, { rowNum, cellNum }) => ({
+    ...state,
+    playingboard: state.playingboard.setIn(
+      [rowNum, cellNum],
+      state.currentPlayer === 1 ? 1 : -1,
+    ),
+  }),
+  [togglePlayer]: state => ({
+    ...state,
+    currentPlayer: state.currentPlayer ? 0 : 1,
+  }),
+}, initialState);
