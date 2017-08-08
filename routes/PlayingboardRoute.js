@@ -48,6 +48,13 @@ const defaultProps = {
 };
 
 class PlayingboardRoute extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.playingboard !== this.props.playingboard)
+      return true;
+
+    return false;
+  }
+
   _handleRedirectToConfigure = () => {
     this.props.onRedirectToPath('/configure');
   }
