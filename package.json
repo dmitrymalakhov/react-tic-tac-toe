@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/dmitrymalakhov/noughtsanddaggers#readme",
   "dependencies": {
+    "express": "^4.15.4",
+    "express-graphql": "^0.6.7",
+    "graphql": "^0.10.5",
     "immutable": "^3.8.1",
     "polished": "^1.3.0",
     "prop-types": "^15.5.10",
