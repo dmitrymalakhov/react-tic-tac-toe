@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/dmitrymalakhov/noughtsanddaggers#readme",
   "dependencies": {
+    "apollo-server-express": "^1.1.0",
     "express": "^4.15.4",
     "express-graphql": "^0.6.7",
     "graphql": "^0.10.5",
