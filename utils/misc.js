@@ -4,9 +4,9 @@
 
 'use strict';
 
-export const noop = () => {};
+module.exports.noop = () => {};
+module.exports.isUndef = maybeUndef => typeof maybeUndef === 'undefined';
+module.exports.fastParseNumberFromString = string => string | 0;
 
-export const isNumeric = maybeNumeric =>
+module.exports.isNumeric = maybeNumeric =>
   !isNaN(parseFloat(maybeNumeric)) && isFinite(maybeNumeric);
-
-export const fastParseNumberFromString = string => string | 0;

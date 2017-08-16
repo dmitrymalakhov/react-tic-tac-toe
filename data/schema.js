@@ -11,26 +11,31 @@ const {
   getStatisticById,
 } = require('./database');
 
+const { isUndef } = require('../utils/misc');
+
 const StatisticItem = new GraphQLObjectType({
   name: 'StatisticItem',
-  args: {
-    id: { type: GraphQLString },
-  },
   fields: {
     id: { type: GraphQLInt },
     score: { type: GraphQLInt },
     playerName1: { type: GraphQLString },
     playerName2: { type: GraphQLString },
   },
-  resolve: (root, args) => getStatisticById(args.id),
 });
 
 const Query = new GraphQLObjectType({
   name: 'Query',
   fields: {
     statistics: {
+      args: {
+        id: { type: GraphQLString },
+      },
       type: new GraphQLList(StatisticItem),
-      resolve: () => getAllStatistic(),
+      resolve(root, { id }) {
+        return isUndef(id)
+          ? getAllStatistic()
+          : getStatisticById(id);
+      },
     },
   },
 });
