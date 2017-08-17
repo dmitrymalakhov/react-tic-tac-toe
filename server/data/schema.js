@@ -7,11 +7,12 @@ const {
 } = require('graphql');
 
 const {
+  addStatisticsPlayedGame,
   getAllStatistic,
   getStatisticById,
 } = require('./database');
 
-const { isUndef } = require('../utils/misc');
+const { isUndef } = require('../../utils/misc');
 
 const StatisticItem = new GraphQLObjectType({
   name: 'StatisticItem',
@@ -20,6 +21,21 @@ const StatisticItem = new GraphQLObjectType({
     score: { type: GraphQLInt },
     playerName1: { type: GraphQLString },
     playerName2: { type: GraphQLString },
+  },
+});
+
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    createStatistic: {
+      type: StatisticItem,
+      args: {
+        score: { type: GraphQLInt },
+      },
+      resolve(root, { score }) {
+        return addStatisticsPlayedGame('p1', 'p2', 0, score);
+      },
+    },
   },
 });
 
@@ -42,4 +58,5 @@ const Query = new GraphQLObjectType({
 
 module.exports.schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation,
 });
