@@ -26,8 +26,6 @@ const animation = ({ transitionOut }) => {
   `;
 };
 
-
-
 export const SCTransitionStyled = styled.div`
   ${animation}
 `;
