@@ -27,6 +27,7 @@ module.exports = merge(config('production'), {
     maxEntrypointSize: 1000000,
   },
   plugins: [
+    new webpack.ProgressPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.LoaderOptionsPlugin({
       minimize: true,

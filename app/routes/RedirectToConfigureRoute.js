@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { redirectToPath } from '../actions/app';
-import { noop } from '../utils/misc';
+import { noop } from '../../utils/misc';
 
 const propTypes = {
   onRedirectToPath: PropTypes.func,

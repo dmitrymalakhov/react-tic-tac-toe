@@ -4,7 +4,7 @@
   "description": "Simple Game",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./build-conf/webpack.config.js",
+    "start": "webpack-dashboard -- node index.js",
     "lint": "eslint .",
     "lint:style": "stylelint './components/**/styled/*.js'",
     "build": "webpack --config ./build-conf/webpack.config.js",
@@ -43,7 +43,8 @@
     "redux-act": "^1.3.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "webpack-dashboard": "^0.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

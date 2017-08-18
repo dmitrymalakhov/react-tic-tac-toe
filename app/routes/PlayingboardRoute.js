@@ -19,7 +19,7 @@ import RouteContainer from '../containers/RouteContainer';
 import PlayingboardRouteContainer from
   '../containers/PlayingboardRouteContainer';
 
-import { noop } from '../utils/misc';
+import { noop } from '../../utils/misc';
 
 const propTypes = {
   size: PropTypes.number,

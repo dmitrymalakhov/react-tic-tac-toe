@@ -8,7 +8,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { LabelStyled } from './styled/LabelStyled';
 import { InputStyled } from './styled/InputStyled';
-import { noop } from '../../utils/misc';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   label: PropTypes.string,

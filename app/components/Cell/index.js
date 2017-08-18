@@ -7,7 +7,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import CellStyled from './styled/CellStyled';
-import { noop } from '../../utils/misc';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   num: PropTypes.number,

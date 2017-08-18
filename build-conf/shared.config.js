@@ -7,7 +7,7 @@
 const { resolve } = require('path'),
   webpack = require('webpack');
 
-const PATH_SOURCES = resolve(__dirname, '../');
+const PATH_SOURCES = resolve(__dirname, '../app');
 const PATH_DIST = resolve(__dirname, '..', 'public');
 
 const config = env => ({
@@ -48,7 +48,6 @@ const config = env => ({
     ],
   },
   plugins: [
-    new webpack.ProgressPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

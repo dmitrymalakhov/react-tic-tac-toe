@@ -7,7 +7,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { SCTransitionStyled } from './styled/SCTransitionStyled';
-import { noop } from '../../utils/misc';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   transitionIn: PropTypes.bool,

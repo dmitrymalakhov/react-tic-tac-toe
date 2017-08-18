@@ -12,7 +12,7 @@ const {
   getStatisticById,
 } = require('./database');
 
-const { isUndef } = require('../../utils/misc');
+const { isUndef } = require('../utils/misc');
 
 const StatisticItem = new GraphQLObjectType({
   name: 'StatisticItem',

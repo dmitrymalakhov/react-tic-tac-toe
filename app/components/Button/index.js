@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ButtonStyled } from './styled/ButtonStyled';
-import { noop } from '../../utils/misc';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   label: PropTypes.string,

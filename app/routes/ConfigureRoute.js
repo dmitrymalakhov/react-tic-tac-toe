@@ -13,7 +13,7 @@ import { Input } from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
 import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
-import { noop, isNumeric, fastParseNumberFromString } from '../utils/misc';
+import { noop, isNumeric, fastParseNumberFromString } from '../../utils/misc';
 
 const propTypes = {
   players: PropTypes.arrayOf(

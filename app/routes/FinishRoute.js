@@ -11,7 +11,7 @@ import { restartGame } from '../actions/game';
 import { Button } from '../components/Button';
 import RouteContainer from '../containers/RouteContainer';
 import FinishRouteContainer from '../containers/FinishRouteContainer';
-import { noop } from '../utils/misc';
+import { noop } from '../../utils/misc';
 
 const propTypes = {
   players: PropTypes.arrayOf(
