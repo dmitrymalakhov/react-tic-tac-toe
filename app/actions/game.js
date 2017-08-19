@@ -11,24 +11,32 @@ const MAIN_DIAGONAL_TYPE = 1;
 const ANTIDIAGONAL_TYPE = 2;
 const CENTER_TYPE = 0;
 
-const checkRow = (playingboard, rowNum) => {
+const checkRow = (playingboard, rowNum, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
 
-  for (let columnNum = 0; columnNum < size; columnNum++)
+  for (let columnNum = 0; columnNum < size; columnNum++) {
     result += playingboard.getIn([rowNum, columnNum]);
 
-  return Math.abs(result) === size;
+    if (Math.abs(result) === amountCellsToWin)
+      return true;
+  }
+
+  return false;
 };
 
-const checkColumn = (playingboard, columnNum) => {
+const checkColumn = (playingboard, columnNum, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
 
-  for (let rowNum = 0; rowNum < size; rowNum++)
+  for (let rowNum = 0; rowNum < size; rowNum++) {
     result += playingboard.getIn([rowNum, columnNum]);
 
-  return Math.abs(result) === size;
+    if (Math.abs(result) === amountCellsToWin)
+      return true;
+  }
+
+  return false;
 };
 
 const getDiagonalType = (lastRowNum, lastColumnNum, size) => {
@@ -49,36 +57,50 @@ const getDiagonalType = (lastRowNum, lastColumnNum, size) => {
   return CENTER_TYPE;
 };
 
-const checkMainDiagonal = playingboard => {
+const checkMainDiagonal = (playingboard, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
 
-  for (let index = 0; index < size; index++)
+  for (let index = 0; index < size; index++) {
     result += playingboard.getIn([index, index]);
 
-  return Math.abs(result) === size;
+    if (Math.abs(result) === amountCellsToWin)
+      return true;
+  }
+
+  return false;
 };
 
-const checkAntidiagonal = playingboard => {
+const checkAntidiagonal = (playingboard, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
 
-  for (let index = 0; index < size; index++)
+  for (let index = 0; index < size; index++) {
     result += playingboard.getIn([size - index - 1, index]);
 
-  return Math.abs(result) === size;
+    if (Math.abs(result) === amountCellsToWin)
+      return true;
+  }
+
+  return false;
 };
 
-const checkDiagonals = (playingboard, lastRowNum, lastColumnNum) => {
+const checkDiagonals = (
+  playingboard,
+  lastRowNum,
+  lastColumnNum,
+  amountCellsToWin,
+) => {
   const typeDiagonal = getDiagonalType(playingboard, lastRowNum, lastColumnNum);
 
   if (typeDiagonal === MAIN_DIAGONAL_TYPE)
-    return checkMainDiagonal(playingboard);
+    return checkMainDiagonal(playingboard, amountCellsToWin);
 
   if (typeDiagonal === ANTIDIAGONAL_TYPE)
-    return checkAntidiagonal(playingboard);
+    return checkAntidiagonal(playingboard, amountCellsToWin);
 
-  return checkMainDiagonal(playingboard) || checkAntidiagonal(playingboard);
+  return checkMainDiagonal(playingboard, amountCellsToWin) ||
+    checkAntidiagonal(playingboard, amountCellsToWin);
 };
 
 export const toggleCellMode = createAction(
@@ -95,6 +117,7 @@ const checkOutGame = () => (dispatch, getState) => {
     game:
       {
         playingboard,
+        amountCellsToWin,
         lastSelectedCell: [
           lastRowNum,
           lastColumnNum,
@@ -103,9 +126,9 @@ const checkOutGame = () => (dispatch, getState) => {
     } = getState();
 
   if (
-    checkRow(playingboard, lastRowNum) ||
-    checkColumn(playingboard, lastColumnNum) ||
-    checkDiagonals(playingboard, lastRowNum, lastColumnNum)
+    checkRow(playingboard, lastRowNum, amountCellsToWin) ||
+    checkColumn(playingboard, lastColumnNum, amountCellsToWin) ||
+    checkDiagonals(playingboard, lastRowNum, lastColumnNum, amountCellsToWin)
   ) {
     dispatch(endGame());
     dispatch(redirectToPath('/finish'));
@@ -115,12 +138,12 @@ const checkOutGame = () => (dispatch, getState) => {
 };
 
 export const changeCellMode = (rowNum, cellNum) => (dispatch, getState) => {
-  const { game: { playingboard, moveAmount, size } } = getState();
+  const { game: { playingboard, moveAmount, amountCellsToWin } } = getState();
 
   if (playingboard.getIn([rowNum, cellNum]) === 0) {
     dispatch(toggleCellMode(rowNum, cellNum));
 
-    if (moveAmount >= size * 2 - 2)
+    if (moveAmount >= amountCellsToWin * 2 - 2)
       dispatch(checkOutGame());
     else
       dispatch(togglePlayer());
@@ -129,11 +152,11 @@ export const changeCellMode = (rowNum, cellNum) => (dispatch, getState) => {
 
 export const gameConfiguredComplete = createAction(
   'CONFIGURE_GAME',
-  (size, players) => ({ size, players }),
+  (size, players, amountCellsToWin) => ({ size, players, amountCellsToWin }),
 );
 
-export const configureGame = (size, players) => dispatch => {
-  dispatch(gameConfiguredComplete(size, players));
+export const configureGame = (size, players, amountCellsToWin) => dispatch => {
+  dispatch(gameConfiguredComplete(size, players, amountCellsToWin));
   dispatch(redirectToPath('/playingboard'));
 };
 

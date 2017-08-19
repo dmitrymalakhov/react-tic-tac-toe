@@ -22,6 +22,7 @@ const propTypes = {
     })
   ),
   size: PropTypes.number,
+  amountCellsToWin: PropTypes.number,
   onConfigureGame: PropTypes.func,
 };
 
@@ -32,6 +33,7 @@ const defaultProps = {
     },
   ],
   size: DEFAULT_SIZE_PLAYINGBOARD,
+  amountCellsToWin: DEFAULT_SIZE_PLAYINGBOARD,
   onConfigureGame: noop,
 };
 
@@ -42,12 +44,13 @@ class ConfigureRoute extends PureComponent {
     this.state = {
       playerName1: props.players[0].name,
       playerName2: props.players[1].name,
+      amountCellsToWin: props.amountCellsToWin,
       size: props.size,
     };
   }
 
   _handleClickStartGame = () => {
-    const { size, playerName1, playerName2 } = this.state;
+    const { size, playerName1, playerName2, amountCellsToWin } = this.state;
 
     const players = [
       {
@@ -58,7 +61,7 @@ class ConfigureRoute extends PureComponent {
       },
     ];
 
-    this.props.onConfigureGame(size, players);
+    this.props.onConfigureGame(size, players, amountCellsToWin);
   }
 
   _handleChangePlayerName1 = value => {
@@ -77,6 +80,14 @@ class ConfigureRoute extends PureComponent {
     if (isNumeric(value) || !value) {
       this.setState({
         size: fastParseNumberFromString(value) || value,
+      });
+    }
+  }
+
+  _handleChangeAmountCellToWin = value => {
+    if (isNumeric(value) || !value) {
+      this.setState({
+        amountCellsToWin: fastParseNumberFromString(value) || value,
       });
     }
   }
@@ -103,6 +114,12 @@ class ConfigureRoute extends PureComponent {
             value={this.state.size}
             onChange={this._handleChangeSize}
           />
+          <Input
+            label="Cells to win"
+            placeholder="Default cells to win: 3"
+            value={this.state.amountCellsToWin}
+            onChange={this._handleChangeAmountCellToWin}
+          />
           <Button
             label="To start the battle!"
             onClick={this._handleClickStartGame}
@@ -117,14 +134,15 @@ ConfigureRoute.propTypes = propTypes;
 ConfigureRoute.defaultProps = defaultProps;
 ConfigureRoute.displayName = 'ConfigureRoute';
 
-const mapStateToProps = ({ game }) => ({
-  players: game.players,
-  size: game.size,
+const mapStateToProps = ({ game: { players, amountCellsToWin, size } }) => ({
+  players,
+  amountCellsToWin,
+  size,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onConfigureGame: (size, players) =>
-    void dispatch(configureGame(size, players)),
+  onConfigureGame: (size, players, amountCellsToWin) =>
+    void dispatch(configureGame(size, players, amountCellsToWin)),
 });
 
 export default connect(
