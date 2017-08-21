@@ -7,16 +7,17 @@
 import { createAction } from 'redux-act';
 import { redirectToPath } from './app';
 
-const MAIN_DIAGONAL_TYPE = 1;
-const ANTIDIAGONAL_TYPE = 2;
-const CENTER_TYPE = 0;
-
 const checkRow = (playingboard, rowNum, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
 
   for (let columnNum = 0; columnNum < size; columnNum++) {
-    result += playingboard.getIn([rowNum, columnNum]);
+    const nextValue = playingboard.getIn([rowNum, columnNum]);
+
+    if (nextValue)
+      result += nextValue;
+    else
+      result = 0;
 
     if (Math.abs(result) === amountCellsToWin)
       return true;
@@ -30,7 +31,12 @@ const checkColumn = (playingboard, columnNum, amountCellsToWin) => {
   let result = 0;
 
   for (let rowNum = 0; rowNum < size; rowNum++) {
-    result += playingboard.getIn([rowNum, columnNum]);
+    const nextValue = playingboard.getIn([rowNum, columnNum]);
+
+    if (nextValue)
+      result += nextValue;
+    else
+      result = 0;
 
     if (Math.abs(result) === amountCellsToWin)
       return true;
@@ -39,47 +45,121 @@ const checkColumn = (playingboard, columnNum, amountCellsToWin) => {
   return false;
 };
 
-const getDiagonalType = (lastRowNum, lastColumnNum, size) => {
-  const center = size / 2;
-
-  if (
-    lastRowNum < center && lastColumnNum < center ||
-    lastRowNum > center && lastColumnNum > center
-  )
-    return MAIN_DIAGONAL_TYPE;
-
-  if (
-    lastRowNum < center && lastColumnNum > center ||
-    lastRowNum > center && lastColumnNum < center
-  )
-    return ANTIDIAGONAL_TYPE;
-
-  return CENTER_TYPE;
-};
-
-const checkMainDiagonal = (playingboard, amountCellsToWin) => {
+const checkMainDiagonal = (
+  playingboard,
+  amountCellsToWin,
+  lastRowNum,
+  lastColumnNum,
+) => {
   const size = playingboard.size;
-  let result = 0;
+  let result = 1;
 
-  for (let index = 0; index < size; index++) {
-    result += playingboard.getIn([index, index]);
+  const mustBeValue = playingboard.getIn([lastRowNum, lastColumnNum]);
 
-    if (Math.abs(result) === amountCellsToWin)
-      return true;
+  let index = 1,
+    neededNext = true;
+
+  while (
+    lastRowNum - index >= 0 &&
+    lastColumnNum + index <= size &&
+    neededNext
+  ) {
+    const nextRowNum = lastRowNum - index;
+    const nextColumnNum = lastColumnNum + index;
+    const nextCellValue = playingboard.getIn([nextRowNum, nextColumnNum]);
+
+    neededNext = nextCellValue && nextCellValue === mustBeValue;
+
+    if (neededNext) {
+      index++;
+      result++;
+
+      if (result === amountCellsToWin)
+        return true;
+    }
+  }
+
+  index = 1;
+  neededNext = true;
+
+  while (
+    lastRowNum + index <= size &&
+    lastColumnNum - index >= 0 &&
+    neededNext
+  ) {
+    const nextRowNum = lastRowNum + index;
+    const nextColumnNum = lastColumnNum - index;
+    const nextCellValue = playingboard.getIn([nextRowNum, nextColumnNum]);
+
+    neededNext = nextCellValue && nextCellValue === mustBeValue;
+
+    if (neededNext) {
+      index++;
+      result++;
+
+      if (result === amountCellsToWin)
+        return true;
+    }
   }
 
   return false;
 };
 
-const checkAntidiagonal = (playingboard, amountCellsToWin) => {
+const checkAntidiagonal = (
+  playingboard,
+  amountCellsToWin,
+  lastRowNum,
+  lastColumnNum,
+) => {
   const size = playingboard.size;
-  let result = 0;
+  let result = 1;
 
-  for (let index = 0; index < size; index++) {
-    result += playingboard.getIn([size - index - 1, index]);
+  const mustBeValue = playingboard.getIn([lastRowNum, lastColumnNum]);
 
-    if (Math.abs(result) === amountCellsToWin)
-      return true;
+  let index = 1,
+    neededNext = true;
+
+  while (
+    lastRowNum - index >= 0 &&
+    lastColumnNum - index >= 0 &&
+    neededNext
+  ) {
+    const nextRowNum = lastRowNum - index;
+    const nextColumnNum = lastColumnNum - index;
+    const nextCellValue = playingboard.getIn([nextRowNum, nextColumnNum]);
+
+    neededNext = nextCellValue && nextCellValue === mustBeValue;
+
+    if (neededNext) {
+      index++;
+      result++;
+
+      if (result === amountCellsToWin)
+        return true;
+    }
+  }
+
+  index = 1;
+  neededNext = true;
+
+  while (
+    lastRowNum + index <= size &&
+    lastColumnNum + index <= size &&
+    neededNext
+  ) {
+    const nextRowNum = lastRowNum + index;
+    const nextColumnNum = lastColumnNum + index;
+    const nextCellValue = playingboard.getIn([nextRowNum, nextColumnNum]);
+
+    neededNext = nextCellValue && nextCellValue === mustBeValue;
+
+    if (neededNext) {
+      index++;
+      result++;
+
+      if (result === amountCellsToWin)
+        return true;
+    }
   }
 
   return false;
@@ -91,16 +171,21 @@ const checkDiagonals = (
   lastColumnNum,
   amountCellsToWin,
 ) => {
-  const typeDiagonal = getDiagonalType(playingboard, lastRowNum, lastColumnNum);
+  const mainDiagonalIsComplete = checkMainDiagonal(
+    playingboard,
+    amountCellsToWin,
+    lastRowNum,
+    lastColumnNum,
+  );
 
-  if (typeDiagonal === MAIN_DIAGONAL_TYPE)
-    return checkMainDiagonal(playingboard, amountCellsToWin);
+  const antidiagonalIsComplete = checkAntidiagonal(
+    playingboard,
+    amountCellsToWin,
+    lastRowNum,
+    lastColumnNum,
+  );
 
-  if (typeDiagonal === ANTIDIAGONAL_TYPE)
-    return checkAntidiagonal(playingboard, amountCellsToWin);
-
-  return checkMainDiagonal(playingboard, amountCellsToWin) ||
-    checkAntidiagonal(playingboard, amountCellsToWin);
+  return mainDiagonalIsComplete || antidiagonalIsComplete;
 };
 
 export const toggleCellMode = createAction(
