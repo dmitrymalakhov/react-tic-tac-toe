@@ -11,24 +11,17 @@ import { restartGame } from '../actions/game';
 import { Button } from '../components/Button';
 import RouteContainer from '../containers/RouteContainer';
 import FinishRouteContainer from '../containers/FinishRouteContainer';
+import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
 import { noop } from '../../utils/misc';
 
 const propTypes = {
-  players: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-    })
-  ),
+  players: PlayersPropTypes,
   currentPlayer: PropTypes.number,
   onRestartGame: PropTypes.func,
 };
 
 const defaultProps = {
-  players: [
-    {
-      name: '',
-    },
-  ],
+  players: PlayersDefaultProps,
   currentPlayer: 0,
   onRestartGame: noop,
 };
@@ -40,7 +33,7 @@ class FinishRoute extends PureComponent {
 
   render() {
     const { players, currentPlayer } = this.props,
-      playerName = players[currentPlayer].name;
+      playerName = players.getIn([currentPlayer, 'name']);
 
     return (
       <RouteContainer>

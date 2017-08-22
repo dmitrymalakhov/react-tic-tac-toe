@@ -23,25 +23,24 @@ import {
 } from '../constants/game';
 
 import Playingboard, { initialMatrix } from '../models/playingboard';
+import Players, { Player } from '../models/players';
 
 const initialState = {
   size: DEFAULT_SIZE_PLAYINGBOARD,
   amountCellsToWin: DEFAULT_SIZE_PLAYINGBOARD,
-  players: [
-    { name: 'Player #1' },
-    { name: 'Player #2' },
-  ],
+  players: Players,
   playingboard: Playingboard,
   currentPlayer: 0,
   moveAmount: 0,
-  score: [0, 0],
   status: GAME_CONFIGURE,
 };
+
+const playersToList = players => List(players.map(item => new Player(item)));
 
 export default createReducer({
   [gameConfiguredComplete]: (state, { players, size, amountCellsToWin }) => ({
     ...state,
-    players,
+    players: playersToList(players),
     size,
     amountCellsToWin,
     playingboard: List(initialMatrix(size)),

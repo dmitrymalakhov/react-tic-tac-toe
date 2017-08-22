@@ -13,25 +13,18 @@ import { Input } from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
 import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
+import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
 import { noop, isNumeric, fastParseNumberFromString } from '../../utils/misc';
 
 const propTypes = {
-  players: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-    })
-  ),
+  players: PlayersPropTypes,
   size: PropTypes.number,
   amountCellsToWin: PropTypes.number,
   onConfigureGame: PropTypes.func,
 };
 
 const defaultProps = {
-  players: [
-    {
-      name: '',
-    },
-  ],
+  players: PlayersDefaultProps,
   size: DEFAULT_SIZE_PLAYINGBOARD,
   amountCellsToWin: DEFAULT_SIZE_PLAYINGBOARD,
   onConfigureGame: noop,
@@ -42,8 +35,8 @@ class ConfigureRoute extends PureComponent {
     super(props);
 
     this.state = {
-      playerName1: props.players[0].name,
-      playerName2: props.players[1].name,
+      playerName1: props.players.getIn([0, 'name']),
+      playerName2: props.players.getIn([1, 'name']),
       amountCellsToWin: props.amountCellsToWin,
       size: props.size,
     };

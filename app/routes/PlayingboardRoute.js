@@ -7,14 +7,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import Playingboard from '../models/playingboard';
 import { redirectToPath } from '../actions/app';
 import { changeCellMode } from '../actions/game';
 import { Button } from '../components/Button';
 import { Cell } from '../components/Cell';
 import { Row } from '../components/Row';
 import RouteContainer from '../containers/RouteContainer';
+import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
+
+import {
+  PlayingboardPropTypes,
+  PlayingboardDefaultProps,
+} from '../models/playingboard';
 
 import PlayingboardRouteContainer from
   '../containers/PlayingboardRouteContainer';
@@ -23,14 +27,8 @@ import { noop } from '../../utils/misc';
 
 const propTypes = {
   size: PropTypes.number,
-  playingboard: ImmutablePropTypes.listOf(
-    ImmutablePropTypes.list,
-  ),
-  players: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-    }),
-  ),
+  playingboard: PlayingboardPropTypes,
+  players: PlayersPropTypes,
   currentPlayer: PropTypes.number,
   onRedirectToPath: PropTypes.func,
   onChangeCellMode: PropTypes.func,
@@ -38,11 +36,9 @@ const propTypes = {
 
 const defaultProps = {
   size: 3,
-  playingboard: Playingboard,
+  playingboard: PlayingboardDefaultProps,
   currentPlayer: 0,
-  players: [
-    { name: '' },
-  ],
+  players: PlayersDefaultProps,
   onRedirectToPath: noop,
   onChangeCellMode: noop,
 };
@@ -89,7 +85,9 @@ class PlayingboardRoute extends Component {
   _renderPlayerName() {
     const { currentPlayer, players } = this.props;
 
-    const label = `The player ${players[currentPlayer].name}`;
+    const name = players.getIn([currentPlayer, 'name']),
+      label = `The player ${name}`;
+
     return (
       <div>
         {label}
