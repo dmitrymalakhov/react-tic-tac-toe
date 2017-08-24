@@ -4,23 +4,41 @@
 
 'use strict';
 
+/* eslint-disable  import/no-extraneous-dependencies */
 const { resolve } = require('path'),
-  webpack = require('webpack');
+  webpack = require('webpack'),
+  omit = require('lodash.omit');
+
+const Package = require('../package.json');
 
 const PATH_SOURCES = resolve(__dirname, '../app');
 const PATH_DIST = resolve(__dirname, '..', 'public');
 
+const dependencies = omit(Package.dependencies, [
+  'apollo-server-express',
+  'express',
+  'express-graphql',
+  'graphql',
+]);
+
+const vendorChunks = Object.keys(dependencies);
+
 const config = env => ({
+  target: 'web',
+  node: {
+    fs: 'empty',
+    child_process: 'empty',
+    net: 'empty',
+  },
   context: PATH_SOURCES,
   output: {
     path: PATH_DIST,
     publicPath: '/',
-    filename: '[name]-[hash].js',
-    chunkFilename: '[id].js',
     sourceMapFilename: '[name].map',
   },
   entry: {
     main: ['./index'],
+    vendor: vendorChunks,
   },
   resolve: {
     modules: ['node_modules'],
@@ -48,6 +66,13 @@ const config = env => ({
     ],
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+    }),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

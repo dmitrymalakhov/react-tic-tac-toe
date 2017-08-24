@@ -32,6 +32,7 @@
     "express-graphql": "^0.6.7",
     "graphql": "^0.10.5",
     "immutable": "^3.8.1",
+    "lodash.omit": "^4.5.0",
     "polished": "^1.4.1",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
@@ -43,8 +44,7 @@
     "redux-act": "^1.3.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.2",
-    "webpack-dashboard": "^0.4.0"
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -68,6 +68,7 @@
     "stylelint-processor-styled-components": "^0.2.2",
     "webpack": "^3.5.5",
     "webpack-dev-server": "^2.7.1",
+    "webpack-dashboard": "^0.4.0",
     "webpack-merge": "^4.1.0"
   }
 }

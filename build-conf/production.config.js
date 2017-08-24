@@ -4,12 +4,17 @@
 
 'use strict';
 
+/* eslint-disable  import/no-extraneous-dependencies */
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
   webpack = require('webpack'),
   merge = require('webpack-merge'),
   { config } = require('./shared.config');
 
 module.exports = merge(config('production'), {
+  output: {
+    filename: '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js',
+  },
   profile: true,
   cache: false,
   watch: false,

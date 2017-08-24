@@ -26,7 +26,10 @@ const defaultProps = {
   location: {},
 };
 
-const AboutRoute = () => import('./AboutRoute');
+const AboutRoute = () => import(
+  /* webpackChunkName: 'about' */
+  './AboutRoute'
+);
 
 const availableRoutes = {
   '/configure': ConfigureRoute,
