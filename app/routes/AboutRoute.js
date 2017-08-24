@@ -4,15 +4,13 @@
 
 'use strict';
 
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-
-const AboutRouteStyled = styled.div``;
+import React from 'react';
+import RouteContainer from '../containers/RouteContainer';
 
 const AboutRoute = () => (
-  <AboutRouteStyled>
+  <RouteContainer>
     <p>It route dynamic imports</p>
-  </AboutRouteStyled>
+  </RouteContainer>
 );
 
 export default AboutRoute;

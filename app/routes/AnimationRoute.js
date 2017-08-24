@@ -26,7 +26,7 @@ const defaultProps = {
   location: {},
 };
 
-const AboutRoute = () => import('./FinishRoute');
+const AboutRoute = () => import('./AboutRoute');
 
 const availableRoutes = {
   '/configure': ConfigureRoute,
