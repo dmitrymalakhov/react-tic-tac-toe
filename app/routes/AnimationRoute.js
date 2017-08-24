@@ -25,6 +25,19 @@ const defaultProps = {
   location: {},
 };
 
+const availableRoutes = {
+  '/configure': ConfigureRoute,
+  '/playingboard': PlayingboardRoute,
+  '/finish': FinishRoute,
+};
+
+const routes = new Proxy(availableRoutes, {
+  get(target, prop) {
+    const Route = target[prop];
+    return Route ? <Route /> : null;
+  },
+});
+
 class AnimationRoute extends PureComponent {
   constructor(props) {
     super(props);
@@ -35,28 +48,15 @@ class AnimationRoute extends PureComponent {
     };
   }
 
-  _getRouteByPathname(pathname) {
-    switch (pathname) {
-      case '/configure':
-        return <ConfigureRoute />;
-      case '/playingboard':
-        return <PlayingboardRoute />;
-      case '/finish':
-        return <FinishRoute />;
-      default:
-        return null;
-    }
-  }
-
   _renderPrevRoute() {
     if (this.state.prevRouteAnimationEnded)
       return null;
 
-    return this._getRouteByPathname(this.props.prevPathname);
+    return routes[this.props.prevPathname];
   }
 
   _renderNextRoute() {
-    return this._getRouteByPathname(this.props.location.pathname);
+    return routes[this.props.location.pathname];
   }
 
   _handleTransitionOut = () => {
