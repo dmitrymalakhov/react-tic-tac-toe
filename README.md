@@ -5,8 +5,8 @@ A simple implementation of the game "TIC TAC toe" using React, Styled Components
 ## Getting started
 
 ```
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 Open your browser to 0.0.0.0:8090
