@@ -31,7 +31,7 @@ const availableRoutes = {
   '/finish': FinishRoute,
 };
 
-const routes = new Proxy(availableRoutes, {
+const routeElements = new Proxy(availableRoutes, {
   get(target, prop) {
     const Route = target[prop];
     return Route ? <Route /> : null;
@@ -52,11 +52,11 @@ class AnimationRoute extends PureComponent {
     if (this.state.prevRouteAnimationEnded)
       return null;
 
-    return routes[this.props.prevPathname];
+    return routeElements[this.props.prevPathname];
   }
 
   _renderNextRoute() {
-    return routes[this.props.location.pathname];
+    return routeElements[this.props.location.pathname];
   }
 
   _handleTransitionOut = () => {
