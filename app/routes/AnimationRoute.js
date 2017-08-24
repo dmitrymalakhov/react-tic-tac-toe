@@ -10,6 +10,7 @@ import ConfigureRoute from './ConfigureRoute';
 import PlayingboardRoute from './PlayingboardRoute';
 import FinishRoute from './FinishRoute';
 import SCTransition from '../components/SCTransition';
+import asyncComponent from '../hoc/asyncComponent';
 
 const propTypes = {
   prevPathname: PropTypes.string,
@@ -25,10 +26,13 @@ const defaultProps = {
   location: {},
 };
 
+const AboutRoute = () => import('./FinishRoute');
+
 const availableRoutes = {
   '/configure': ConfigureRoute,
   '/playingboard': PlayingboardRoute,
   '/finish': FinishRoute,
+  '/about': asyncComponent(AboutRoute),
 };
 
 const routeElements = new Proxy(availableRoutes, {
