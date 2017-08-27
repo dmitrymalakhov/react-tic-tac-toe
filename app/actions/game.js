@@ -8,6 +8,12 @@ import { createAction } from 'redux-act';
 import { redirectToPath } from './app';
 import { checkRow, checkColumn, checkDiagonals } from '../utils/game';
 
+import {
+  CONFIGURE_ROUTE,
+  PLAYINGBOARD_ROUTE,
+  FINISH_ROUTE,
+} from '../constants/route';
+
 export const toggleCellMode = createAction(
   'TOGGLE_CELL_MODE',
   (rowNum, cellNum) => ({ rowNum, cellNum })
@@ -36,7 +42,7 @@ const checkOutGame = () => (dispatch, getState) => {
     checkDiagonals(playingboard, lastRowNum, lastColumnNum, amountCellsToWin)
   ) {
     dispatch(endGame());
-    dispatch(redirectToPath('/finish'));
+    dispatch(redirectToPath(FINISH_ROUTE));
   } else {
     dispatch(togglePlayer());
   }
@@ -62,12 +68,12 @@ export const gameConfiguredComplete = createAction(
 
 export const configureGame = (size, players, amountCellsToWin) => dispatch => {
   dispatch(gameConfiguredComplete(size, players, amountCellsToWin));
-  dispatch(redirectToPath('/playingboard'));
+  dispatch(redirectToPath(PLAYINGBOARD_ROUTE));
 };
 
 export const resetGameState = createAction('RESET_GAME');
 
 export const restartGame = () => dispatch => {
   dispatch(resetGameState());
-  dispatch(redirectToPath('/configure'));
+  dispatch(redirectToPath(CONFIGURE_ROUTE));
 };

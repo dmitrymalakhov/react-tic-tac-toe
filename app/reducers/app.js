@@ -6,9 +6,10 @@
 
 import { createReducer } from 'redux-act';
 import { redirectToPath } from '../actions/app';
+import { ROOT_ROUTE } from '../constants/route';
 
 const initiaState = {
-  routeName: '/',
+  routeName: ROOT_ROUTE,
 };
 
 export default createReducer({

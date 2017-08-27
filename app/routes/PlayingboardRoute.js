@@ -23,6 +23,8 @@ import {
 import PlayingboardRouteContainer from
   '../containers/PlayingboardRouteContainer';
 
+import { CONFIGURE_PATH } from '../constants/route';
+
 import { noop } from '../../utils/misc';
 
 const propTypes = {
@@ -52,7 +54,7 @@ class PlayingboardRoute extends Component {
   }
 
   _handleRedirectToConfigure = () => {
-    this.props.onRedirectToPath('/configure');
+    this.props.onRedirectToPath(CONFIGURE_PATH);
   }
 
   _handleChangeModeCell = (rowNum, cellNum) => {

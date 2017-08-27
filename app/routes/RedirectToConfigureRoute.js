@@ -8,6 +8,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { redirectToPath } from '../actions/app';
+import { CONFIGURE_ROUTE } from '../constants/route';
 import { noop } from '../../utils/misc';
 
 const propTypes = {
@@ -20,7 +21,7 @@ const defaultProps = {
 
 class RedirectToConfigureRoute extends PureComponent {
   componentWillMount() {
-    this.props.onRedirectToPath('/configure');
+    this.props.onRedirectToPath(CONFIGURE_ROUTE);
   }
 
   render() {

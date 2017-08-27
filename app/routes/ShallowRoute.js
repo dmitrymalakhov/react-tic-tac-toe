@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import AnimationRoute from './AnimationRoute';
 import RedirectToConfigureRoute from './RedirectToConfigureRoute';
+import { ROOT_ROUTE } from '../constants/route';
 
 const propTypes = {
   routeName: PropTypes.string,
@@ -21,7 +22,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  routeName: '/',
+  routeName: ROOT_ROUTE,
   location: {},
 };
 

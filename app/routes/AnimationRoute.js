@@ -12,6 +12,14 @@ import FinishRoute from './FinishRoute';
 import SCTransition from '../components/SCTransition';
 import asyncComponent from '../hoc/asyncComponent';
 
+import {
+  ROOT_ROUTE,
+  CONFIGURE_PATH,
+  PLAYINGBOARD_ROUTE,
+  FINISH_ROUTE,
+  ABOUT_ROUTE,
+} from '../constants/route';
+
 const propTypes = {
   prevPathname: PropTypes.string,
   location: PropTypes.shape({
@@ -22,7 +30,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  prevPathname: '/',
+  prevPathname: ROOT_ROUTE,
   location: {},
 };
 
@@ -32,10 +40,10 @@ const AboutRoute = () => import(
 );
 
 const availableRoutes = {
-  '/configure': ConfigureRoute,
-  '/playingboard': PlayingboardRoute,
-  '/finish': FinishRoute,
-  '/about': asyncComponent(AboutRoute),
+  [CONFIGURE_PATH]: ConfigureRoute,
+  [PLAYINGBOARD_ROUTE]: PlayingboardRoute,
+  [FINISH_ROUTE]: FinishRoute,
+  [ABOUT_ROUTE]: asyncComponent(AboutRoute),
 };
 
 const routeElements = new Proxy(availableRoutes, {
