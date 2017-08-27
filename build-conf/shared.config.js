@@ -53,14 +53,23 @@ const config = env => ({
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader?limit=5120&name=images/[name]-[hash].[ext]',
-        ],
+        use: [{
+          loader: 'file-loader',
+          options: {
+            limit: 5120,
+            name: 'images/[name]-[hash].[ext]',
+          },
+        }],
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
-          'file-loader?name=fonts/[name]-[hash].[ext]',
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'fonts/[name]-[hash].[ext]',
+            },
+          },
         ],
       },
     ],

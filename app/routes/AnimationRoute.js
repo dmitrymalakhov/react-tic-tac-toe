@@ -14,7 +14,7 @@ import asyncComponent from '../hoc/asyncComponent';
 
 import {
   ROOT_ROUTE,
-  CONFIGURE_PATH,
+  CONFIGURE_ROUTE,
   PLAYINGBOARD_ROUTE,
   FINISH_ROUTE,
   ABOUT_ROUTE,
@@ -40,7 +40,7 @@ const AboutRoute = () => import(
 );
 
 const availableRoutes = {
-  [CONFIGURE_PATH]: ConfigureRoute,
+  [CONFIGURE_ROUTE]: ConfigureRoute,
   [PLAYINGBOARD_ROUTE]: PlayingboardRoute,
   [FINISH_ROUTE]: FinishRoute,
   [ABOUT_ROUTE]: asyncComponent(AboutRoute),
