@@ -10,10 +10,11 @@ import { connect } from 'react-redux';
 import { redirectToPath } from '../actions/app';
 import { changeCellMode } from '../actions/game';
 import { Button } from '../components/Button';
-import { Cell } from '../components/Cell';
-import { Row } from '../components/Row';
+import GameInfoBox from '../components/GameInfoBox';
+import Playingboard from '../components/Playingboard';
 import RouteContainer from '../containers/RouteContainer';
 import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
+import { ScorePropTypes, ScoreDefaultProps } from '../models/score';
 
 import {
   PlayingboardPropTypes,
@@ -24,88 +25,52 @@ import PlayingboardRouteContainer from
   '../containers/PlayingboardRouteContainer';
 
 import { CONFIGURE_ROUTE } from '../constants/route';
-
 import { noop } from '../../utils/misc';
 
 const propTypes = {
-  size: PropTypes.number,
   playingboard: PlayingboardPropTypes,
   players: PlayersPropTypes,
+  score: ScorePropTypes,
   currentPlayer: PropTypes.number,
   onRedirectToPath: PropTypes.func,
   onChangeCellMode: PropTypes.func,
 };
 
 const defaultProps = {
-  size: 3,
   playingboard: PlayingboardDefaultProps,
-  currentPlayer: 0,
   players: PlayersDefaultProps,
+  score: ScoreDefaultProps,
+  currentPlayer: 0,
   onRedirectToPath: noop,
   onChangeCellMode: noop,
 };
 
 class PlayingboardRoute extends Component {
-  shouldComponentUpdate(nextProps) {
-    if (nextProps.playingboard !== this.props.playingboard)
-      return true;
-
-    return false;
-  }
-
   _handleRedirectToConfigure = () => {
     this.props.onRedirectToPath(CONFIGURE_ROUTE);
   }
 
-  _handleChangeModeCell = (rowNum, cellNum) => {
-    this.props.onChangeCellMode(rowNum, cellNum);
-  }
-
-  _renderRows() {
-    return Array.from({ length: this.props.size }, (value, rowNum) => {
-      const cells = Array.from(
-        { length: this.props.size },
-        (value, cellNum) => (
-          <Cell
-            key={cellNum}
-            num={cellNum}
-            row={rowNum}
-            mode={this.props.playingboard.getIn([rowNum, cellNum])}
-            onClick={this._handleChangeModeCell}
-          />
-        ),
-      );
-
-      return (
-        <Row key={rowNum}>
-          {cells}
-        </Row>
-      );
-    });
-  }
-
-  _renderPlayerName() {
-    const { currentPlayer, players } = this.props;
-
-    const name = players.getIn([currentPlayer, 'name']),
-      label = `The player ${name}`;
-
-    return (
-      <div>
-        {label}
-      </div>
-    );
-  }
-
   render() {
-    const rows = this._renderRows(),
-      playerName = this._renderPlayerName();
+    const {
+      players,
+      score,
+      playingboard,
+      currentPlayer,
+      onChangeCellMode,
+    } = this.props;
 
     return (
       <RouteContainer>
         <PlayingboardRouteContainer>
-          { playerName }
-          { rows }
+          <GameInfoBox
+            players={players}
+            score={score}
+            currentPlayer={currentPlayer}
+          />
+          <Playingboard
+            playingboard={playingboard}
+            onChangeCellMode={onChangeCellMode}
+          />
           <Button
             label="Back to configure"
             onClick={this._handleRedirectToConfigure}
@@ -123,8 +88,8 @@ PlayingboardRoute.displayName = 'PlayingboardRoute';
 const mapStateToProps = ({ game }) => ({
   playingboard: game.playingboard,
   players: game.players,
+  score: game.score,
   currentPlayer: game.currentPlayer,
-  size: game.size,
 });
 
 const mapDispatchToProps = dispatch => ({

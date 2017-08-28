@@ -24,12 +24,14 @@ import {
 
 import Playingboard, { initialMatrix } from '../models/playingboard';
 import Players, { Player } from '../models/players';
+import Score from '../models/score';
 
 const initialState = {
   size: DEFAULT_SIZE_PLAYINGBOARD,
   amountCellsToWin: DEFAULT_SIZE_PLAYINGBOARD,
   players: Players,
   playingboard: Playingboard,
+  score: Score,
   currentPlayer: 0,
   moveAmount: 0,
   status: GAME_CONFIGURE,

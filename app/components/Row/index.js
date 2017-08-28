@@ -7,8 +7,10 @@
 import React from 'react';
 import RowStyled from './styled/RowStyled';
 
-export const Row = props => (
+const Row = props => (
   <RowStyled>
     {props.children}
   </RowStyled>
 );
+
+export default Row;

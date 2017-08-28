@@ -23,7 +23,7 @@ const defaultProps = {
   onClick: noop,
 };
 
-export class Cell extends PureComponent {
+export default class Cell extends PureComponent {
   _handleClick = () => {
     const { num, row } = this.props;
     this.props.onClick(row, num);
