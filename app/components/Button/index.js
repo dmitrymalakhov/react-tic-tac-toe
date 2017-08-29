@@ -19,7 +19,7 @@ const defaultProps = {
   onClick: noop,
 };
 
-export const Button = props => (
+const Button = props => (
   <ButtonStyled onClick={props.onClick}>
     {props.label}
   </ButtonStyled>
@@ -28,3 +28,5 @@ export const Button = props => (
 Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 Button.displayName = 'Button';
+
+export default Button;

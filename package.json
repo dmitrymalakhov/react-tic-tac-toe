@@ -7,10 +7,13 @@
     "start": "webpack-dashboard -- node index.js",
     "lint": "eslint .",
     "lint:style": "stylelint './components/**/styled/*.js'",
+    "clean:public": "rm -rf public/**",
     "build": "webpack --config ./build-conf/webpack.config.js",
-    "build:prod": "rm -rf public/** && npm run build --production",
-    "build:dev": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:prod": "npm run clean:public && npm run build --production",
+    "build:dev": "npm run clean:public && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -47,6 +50,11 @@
     "styled-components": "^2.1.2"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-info": "^3.2.9",
+    "@storybook/addon-links": "^3.2.6",
+    "@storybook/addon-storyshots": "^3.2.8",
+    "@storybook/react": "^3.2.8",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",

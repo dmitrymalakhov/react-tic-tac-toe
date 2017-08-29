@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { redirectToPath } from '../actions/app';
 import { changeCellMode } from '../actions/game';
-import { Button } from '../components/Button';
+import Button from '../components/Button';
 import GameInfoBox from '../components/GameInfoBox';
 import Playingboard from '../components/Playingboard';
 import RouteContainer from '../containers/RouteContainer';

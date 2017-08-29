@@ -29,7 +29,7 @@ const defaultProps = {
 
 let nextInputId = 0;
 
-export class Input extends PureComponent {
+export default class Input extends PureComponent {
   constructor(props) {
     super(props);
 

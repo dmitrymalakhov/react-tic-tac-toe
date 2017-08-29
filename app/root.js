@@ -7,8 +7,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { injectGlobalStyle } from '../../styles/globalStyles';
-import ShallowRoute from '../../routes/ShallowRoute';
+import { injectGlobalStyle } from './styles/globalStyles';
+import ShallowRoute from './routes/ShallowRoute';
 
 injectGlobalStyle();
 
