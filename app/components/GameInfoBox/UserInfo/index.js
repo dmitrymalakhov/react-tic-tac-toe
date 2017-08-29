@@ -13,20 +13,22 @@ import UserInfoStyled from './styled/UserInfoStyled';
 const propTypes = {
   name: PropTypes.string,
   score: PropTypes.number,
+  active: PropTypes.bool,
 };
 
 const defaultProps = {
   name: '',
   score: 0,
+  active: false,
 };
 
-const UserInfo = props => (
-  <UserInfoStyled>
+const UserInfo = ({ name, score, active }) => (
+  <UserInfoStyled active={active}>
     <NameStyled>
-      {props.name}
+      {name}
     </NameStyled>
     <ScoreStyled>
-      {props.score}
+      {score}
     </ScoreStyled>
   </UserInfoStyled>
 );
