@@ -28,7 +28,7 @@ const GameInfoBox = props => {
     <UserInfo
       key={player.name}
       name={player.name}
-      score={props.score[index]}
+      score={props.score.get(index)}
       active={props.currentPlayer === index}
     />
   ));

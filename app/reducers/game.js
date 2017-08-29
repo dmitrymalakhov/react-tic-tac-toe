@@ -38,16 +38,25 @@ const initialState = {
 };
 
 const playersToList = players => List(players.map(item => new Player(item)));
+const scoreToList = score => List(score);
 
 export default createReducer({
-  [gameConfiguredComplete]: (state, { players, size, amountCellsToWin }) => ({
-    ...state,
-    players: playersToList(players),
-    size,
-    amountCellsToWin,
-    playingboard: List(initialMatrix(size)),
-    status: GAME_RUN,
-  }),
+  [gameConfiguredComplete]: (state,
+    {
+      players,
+      size,
+      amountCellsToWin,
+      score,
+    }) => ({
+      ...state,
+      playingboard: List(initialMatrix(size)),
+      players: playersToList(players),
+      score: scoreToList(score),
+      amountCellsToWin,
+      status: GAME_RUN,
+      size,
+    }
+  ),
   [toggleCellMode]: (state, { rowNum, cellNum }) => ({
     ...state,
     playingboard: state.playingboard.setIn(

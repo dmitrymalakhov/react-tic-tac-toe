@@ -61,9 +61,20 @@ export const changeCellMode = (rowNum, cellNum) => (dispatch, getState) => {
   }
 };
 
+const countInitScores = (size, players, amountCellsToWin) =>
+  Array.from({ length: players.length }, () =>
+    size * amountCellsToWin / players.length);
+
+
 export const gameConfiguredComplete = createAction(
   'CONFIGURE_GAME',
-  (size, players, amountCellsToWin) => ({ size, players, amountCellsToWin }),
+  (size, players, amountCellsToWin) => ({
+    size,
+    players,
+    amountCellsToWin,
+    score: countInitScores(size, players, amountCellsToWin),
+    costOfMove: 0,
+  }),
 );
 
 export const configureGame = (size, players, amountCellsToWin) => dispatch => {
