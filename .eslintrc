@@ -2,7 +2,6 @@
   "parser": "babel-eslint",
   "extends": "airbnb",
   "rules": {
-    "semi": [2, "always"],
     "no-extra-semi": [2],
     "arrow-body-style": [2, "as-needed"],
     "arrow-parens": [2, "as-needed",  { "requireForBlockBody": false }],
