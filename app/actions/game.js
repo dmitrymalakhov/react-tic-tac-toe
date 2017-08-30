@@ -6,7 +6,15 @@
 
 import { createAction } from 'redux-act';
 import { redirectToPath } from './app';
-import { checkRow, checkColumn, checkDiagonals } from '../utils/game';
+
+import {
+  checkRow,
+  checkColumn,
+  checkDiagonals,
+  countInitScores,
+  countCostOfMove,
+  recalculateScore,
+} from '../utils/game';
 
 import {
   CONFIGURE_ROUTE,
@@ -16,7 +24,12 @@ import {
 
 export const toggleCellMode = createAction(
   'TOGGLE_CELL_MODE',
-  (rowNum, cellNum) => ({ rowNum, cellNum })
+  (rowNum, cellNum) => ({ rowNum, cellNum }),
+);
+
+export const updateScore = createAction(
+  'UPDATE_SCORE',
+  score => ({ score }),
 );
 
 export const togglePlayer = createAction('TOGGLE_PLAYER');
@@ -24,17 +37,19 @@ export const togglePlayer = createAction('TOGGLE_PLAYER');
 export const endGame = createAction('END_GAME');
 
 const checkOutGame = () => (dispatch, getState) => {
+  const { game } = getState();
+
   const {
-    game:
-      {
-        playingboard,
-        amountCellsToWin,
-        lastSelectedCell: [
-          lastRowNum,
-          lastColumnNum,
-        ],
-      },
-    } = getState();
+    playingboard,
+    amountCellsToWin,
+    score,
+    costOfMove,
+    currentPlayer,
+    lastSelectedCell: [
+      lastRowNum,
+      lastColumnNum,
+    ],
+  } = game;
 
   if (
     checkRow(playingboard, lastRowNum, amountCellsToWin) ||
@@ -44,37 +59,49 @@ const checkOutGame = () => (dispatch, getState) => {
     dispatch(endGame());
     dispatch(redirectToPath(FINISH_ROUTE));
   } else {
+    dispatch(updateScore(recalculateScore(score, costOfMove, currentPlayer)));
     dispatch(togglePlayer());
   }
 };
 
 export const changeCellMode = (rowNum, cellNum) => (dispatch, getState) => {
-  const { game: { playingboard, moveAmount, amountCellsToWin } } = getState();
+  const { game } = getState();
+
+  const {
+    playingboard,
+    moveAmount,
+    amountCellsToWin,
+    score,
+    costOfMove,
+    currentPlayer,
+  } = game;
 
   if (playingboard.getIn([rowNum, cellNum]) === 0) {
     dispatch(toggleCellMode(rowNum, cellNum));
 
-    if (moveAmount >= amountCellsToWin * 2 - 2)
+    if (moveAmount >= amountCellsToWin * 2 - 2) {
       dispatch(checkOutGame());
-    else
+    } else {
+      dispatch(updateScore(recalculateScore(score, costOfMove, currentPlayer)));
       dispatch(togglePlayer());
+    }
   }
 };
 
-const countInitScores = (size, players, amountCellsToWin) =>
-  Array.from({ length: players.length }, () =>
-    size * amountCellsToWin / players.length);
-
-
 export const gameConfiguredComplete = createAction(
   'CONFIGURE_GAME',
-  (size, players, amountCellsToWin) => ({
-    size,
-    players,
-    amountCellsToWin,
-    score: countInitScores(size, players, amountCellsToWin),
-    costOfMove: 0,
-  }),
+  (size, players, amountCellsToWin) => {
+    const score = countInitScores(size, players, amountCellsToWin),
+      costOfMove = countCostOfMove(size, players, score);
+
+    return {
+      size,
+      players,
+      amountCellsToWin,
+      score,
+      costOfMove,
+    };
+  },
 );
 
 export const configureGame = (size, players, amountCellsToWin) => dispatch => {

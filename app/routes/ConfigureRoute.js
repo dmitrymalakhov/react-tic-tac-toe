@@ -7,13 +7,20 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 import { configureGame } from '../actions/game';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
 import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
-import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
+
+import {
+  Player,
+  PlayersPropTypes,
+  PlayersDefaultProps,
+} from '../models/players';
+
 import { noop, isNumeric, fastParseNumberFromString } from '../../utils/misc';
 
 const propTypes = {
@@ -45,14 +52,10 @@ class ConfigureRoute extends PureComponent {
   _handleClickStartGame = () => {
     const { size, playerName1, playerName2, amountCellsToWin } = this.state;
 
-    const players = [
-      {
-        name: playerName1,
-      },
-      {
-        name: playerName2,
-      },
-    ];
+    const players = List.of(
+      new Player({ name: playerName1 }),
+      new Player({ name: playerName2 }),
+    );
 
     this.props.onConfigureGame(size, players, amountCellsToWin);
   }
