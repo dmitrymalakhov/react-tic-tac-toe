@@ -1,3 +1,5 @@
+import { List } from 'immutable';
+
 export const checkRow = (playingboard, rowNum, amountCellsToWin) => {
   const size = playingboard.size;
   let result = 0;
@@ -178,3 +180,19 @@ export const checkDiagonals = (
 
   return mainDiagonalIsComplete || antidiagonalIsComplete;
 };
+
+export const countInitScores = (size, players, amountCellsToWin) => List(
+  Array.from(
+    { length: players.size },
+    () => size * amountCellsToWin,
+  )
+);
+
+export const countCostOfMove = (size, players, score) =>
+  score.map(score => score / ((size ** 2) / 2));
+
+export const recalculateScore = (score, costOfMove, currentPlayer) =>
+  score.update(
+    currentPlayer,
+    value => value - costOfMove.get(currentPlayer),
+  );

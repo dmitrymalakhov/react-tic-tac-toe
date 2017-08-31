@@ -13,6 +13,7 @@ import {
   togglePlayer,
   gameEnd,
   resetGameState,
+  updateScore,
 } from '../actions/game';
 
 import {
@@ -23,7 +24,7 @@ import {
 } from '../constants/game';
 
 import Playingboard, { initialMatrix } from '../models/playingboard';
-import Players, { Player } from '../models/players';
+import Players from '../models/players';
 import Score from '../models/score';
 
 const initialState = {
@@ -37,24 +38,23 @@ const initialState = {
   status: GAME_CONFIGURE,
 };
 
-const playersToList = players => List(players.map(item => new Player(item)));
-const scoreToList = score => List(score);
-
 export default createReducer({
   [gameConfiguredComplete]: (state,
     {
-      players,
       size,
+      players,
       amountCellsToWin,
       score,
+      costOfMove,
     }) => ({
       ...state,
       playingboard: List(initialMatrix(size)),
-      players: playersToList(players),
-      score: scoreToList(score),
+      players,
+      score,
       amountCellsToWin,
       status: GAME_RUN,
       size,
+      costOfMove,
     }
   ),
   [toggleCellMode]: (state, { rowNum, cellNum }) => ({
@@ -79,5 +79,9 @@ export default createReducer({
     status: GAME_CONFIGURE,
     moveAmount: 0,
     playingboard: Playingboard,
+  }),
+  [updateScore]: (state, { score }) => ({
+    ...state,
+    score,
   }),
 }, initialState);
