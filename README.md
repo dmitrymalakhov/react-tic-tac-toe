@@ -1,5 +1,7 @@
 # Noughts and Daggers
 
+[![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
+
 A simple implementation of the game "TIC TAC toe" using React, Styled Components, ImmutableJS, GraphQL and a little magic.
 
 ## Getting started
