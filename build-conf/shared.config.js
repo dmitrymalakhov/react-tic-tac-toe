@@ -4,7 +4,6 @@
 
 'use strict';
 
-/* eslint-disable  import/no-extraneous-dependencies */
 const { resolve } = require('path'),
   webpack = require('webpack'),
   omit = require('lodash.omit');

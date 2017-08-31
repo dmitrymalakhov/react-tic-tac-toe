@@ -4,7 +4,6 @@
 
 'use strict';
 
-/* eslint-disable  import/no-extraneous-dependencies */
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
   webpack = require('webpack'),
   merge = require('webpack-merge'),

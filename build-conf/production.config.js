@@ -4,7 +4,6 @@
 
 'use strict';
 
-/* eslint-disable  import/no-extraneous-dependencies */
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
   webpack = require('webpack'),
   merge = require('webpack-merge'),
@@ -33,7 +32,6 @@ module.exports = merge(config('production'), {
   },
   plugins: [
     new webpack.ProgressPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,

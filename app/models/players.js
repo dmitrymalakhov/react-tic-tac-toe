@@ -20,9 +20,9 @@ const Players = List([player1, player2]);
 export const PlayersDefaultProps = Players;
 
 export const PlayersPropTypes = ImmutablePropTypes.listOf(
-  ImmutablePropTypes.contains(
+  ImmutablePropTypes.recordOf({
     name: PropTypes.string,
-  ),
+  }),
 );
 
 export default Players;

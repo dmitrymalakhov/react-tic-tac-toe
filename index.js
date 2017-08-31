@@ -1,4 +1,9 @@
-/* eslint-disable  import/no-extraneous-dependencies */
+/**
+* @author Dmitry Malakhov
+*/
+
+'use strict';
+
 const express = require('express');
 const path = require('path');
 const graphQLHTTP = require('express-graphql');
