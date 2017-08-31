@@ -1,7 +1,7 @@
 # Noughts and Daggers
 
-![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
-![Coverage Status](https://coveralls.io/repos/github/dmalakhov/noughtsanddaggers/badge.svg?branch=master)](https://coveralls.io/github/dmalakhov/noughtsanddaggers?branch=master)
+[![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/dmalakhov/noughtsanddaggers/badge.svg?branch=master)](https://coveralls.io/github/dmalakhov/noughtsanddaggers?branch=master)
 
 A simple implementation of the game "TIC TAC toe" using React, Styled Components, ImmutableJS, GraphQL and a little magic.
 
