@@ -32,6 +32,6 @@ const app = new WebpackDevServer(compiler, webpackConfig.devServer);
 app.use('/', express.static(path.resolve(__dirname, 'public')));
 
 app.listen(APP_PORT, () => {
-  /* eslint-disable no-console */
+  // eslint-disable-next-line no-console
   console.log(`App is now running on http://0.0.0.0:${APP_PORT}`);
 });

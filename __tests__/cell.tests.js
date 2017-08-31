@@ -7,18 +7,16 @@
 /* eslint-env jest */
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Button from '../app/components/Button';
+import Cell from '../app/components/Cell';
 
-jest.mock('react-dom');
-
-test('Button renders correctly', () => {
+test('if click on Cell return position', () => {
   const mockFn = jest.fn();
 
   const tree = renderer.create(
-    <Button onClick={mockFn} />
+    <Cell row={2} column={3} onClick={mockFn} />
   ).toJSON();
 
   tree.props.onClick();
 
-  expect(mockFn).toHaveBeenCalledTimes(1);
+  expect(mockFn).toHaveBeenCalledWith(2, 3);
 });

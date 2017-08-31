@@ -48,7 +48,7 @@ class Playingboard extends Component {
         (value, cellNum) => (
           <Cell
             key={cellNum}
-            num={cellNum}
+            column={cellNum}
             row={rowNum}
             mode={playingboard.getIn([rowNum, cellNum])}
             onClick={this._handleChangeModeCell}

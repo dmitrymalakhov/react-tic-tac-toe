@@ -10,14 +10,14 @@ import CellStyled from './styled/CellStyled';
 import { noop } from '../../../utils/misc';
 
 const propTypes = {
-  num: PropTypes.number,
+  column: PropTypes.number,
   row: PropTypes.number,
   mode: PropTypes.number,
   onClick: PropTypes.func,
 };
 
 const defaultProps = {
-  num: 0,
+  column: 0,
   row: 0,
   mode: 0,
   onClick: noop,
@@ -25,8 +25,8 @@ const defaultProps = {
 
 export default class Cell extends PureComponent {
   _handleClick = () => {
-    const { num, row } = this.props;
-    this.props.onClick(row, num);
+    const { column, row } = this.props;
+    this.props.onClick(row, column);
   }
 
   _renderContent() {
