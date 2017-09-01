@@ -2,6 +2,7 @@
 
 ![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/dmitrymalakhov/noughtsanddaggers/badge.svg?branch=master)](https://coveralls.io/github/dmitrymalakhov/noughtsanddaggers?branch=master)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
 
 A simple implementation of the game "TIC TAC toe" using React, Styled Components, ImmutableJS, GraphQL and a little magic.
 
