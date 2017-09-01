@@ -23,13 +23,13 @@ const defaultProps = {
   currentPlayer: 0,
 };
 
-const GameInfoBox = props => {
-  const usersInformation = props.players.map((player, index) => (
+const GameInfoBox = ({ players, score, currentPlayer }) => {
+  const usersInformation = players.map((player, index) => (
     <UserInfo
       key={player.name}
       name={player.name}
-      score={props.score.get(index)}
-      active={props.currentPlayer === index}
+      score={score.get(index)}
+      active={currentPlayer === index}
     />
   ));
 
