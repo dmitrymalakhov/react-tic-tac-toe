@@ -1,6 +1,3 @@
 engines:
   eslint:
     enabled: true
-    checks:
-      import/extensions:
-        enabled: false
