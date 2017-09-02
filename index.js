@@ -5,8 +5,9 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const path = require('path');
-const graphQLHTTP = require('express-graphql');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const DashboardPlugin = require('webpack-dashboard/plugin');
@@ -16,11 +17,13 @@ const { GRAPHQL_PORT, APP_PORT } = require('./constants/port');
 
 const graphQLServer = express();
 
-graphQLServer.use('/', graphQLHTTP({
+graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
   schema,
-  graphiql: true,
-  pretty: true,
 }));
+
+graphQLServer.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
+})) 
 
 graphQLServer.listen(GRAPHQL_PORT);
 

@@ -10,6 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'),
   { config, PATH_DIST } = require('./shared.config'),
   { APP_PORT, GRAPHQL_PORT } = require('../constants/port');
 
+const GRAPHQL_ENDPOINT = `http://0.0.0.0:${GRAPHQL_PORT}`;
+
 module.exports = merge.smart(config('development'), {
   entry: {
     main: [
@@ -34,7 +36,10 @@ module.exports = merge.smart(config('development'), {
     hot: true,
     noInfo: true,
     historyApiFallback: true,
-    proxy: { '/graphql': `http://0.0.0.0:${GRAPHQL_PORT}` },
+    proxy: {
+      '/graphql': GRAPHQL_ENDPOINT,
+      '/graphiql': GRAPHQL_ENDPOINT,
+    },
     overlay: {
       warnings: false,
       errors: true,
