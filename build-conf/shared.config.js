@@ -16,7 +16,6 @@ const PATH_DIST = resolve(__dirname, '..', 'public');
 const dependencies = omit(Package.dependencies, [
   'apollo-server-express',
   'express',
-  'express-graphql',
   'graphql',
 ]);
 
