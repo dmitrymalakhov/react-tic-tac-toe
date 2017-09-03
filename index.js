@@ -23,7 +23,7 @@ graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
 
 graphQLServer.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-})) 
+}));
 
 graphQLServer.listen(GRAPHQL_PORT);
 
