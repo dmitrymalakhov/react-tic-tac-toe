@@ -11,14 +11,16 @@ import Button from '../app/components/Button';
 
 jest.mock('react-dom');
 
-test('Button renders correctly', () => {
-  const mockFn = jest.fn();
+describe('<Button/>', () => {
+  test('call onClick if handles click', () => {
+    const mockFn = jest.fn();
 
-  const tree = renderer.create(
-    <Button onClick={mockFn} />
-  ).toJSON();
+    const tree = renderer.create(
+      <Button onClick={mockFn} />
+    ).toJSON();
 
-  tree.props.onClick();
+    tree.props.onClick();
 
-  expect(mockFn).toHaveBeenCalledTimes(1);
+    expect(mockFn).toHaveBeenCalledTimes(1);
+  });
 });
