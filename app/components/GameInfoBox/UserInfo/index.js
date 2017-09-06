@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import NameStyled from './styled/NameStyled';
 import ScoreStyled from './styled/ScoreStyled';
 import UserInfoStyled from './styled/UserInfoStyled';
+import { parseFloatRound2 } from '../../../../utils/misc';
 
 const propTypes = {
   name: PropTypes.string,
@@ -28,7 +29,7 @@ const UserInfo = ({ name, score, active }) => (
       {name}
     </NameStyled>
     <ScoreStyled>
-      {score}
+      {parseFloatRound2(score)}
     </ScoreStyled>
   </UserInfoStyled>
 );

@@ -3,7 +3,9 @@
 ![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/dmitrymalakhov/noughtsanddaggers/badge.svg?branch=master)](https://coveralls.io/github/dmitrymalakhov/noughtsanddaggers?branch=master)
 
-A simple implementation of the game "TIC TAC toe" using React, Styled Components, ImmutableJS, GraphQL, Apollo, Jest, Storybook and a little magic.
+A simple implementation of the game "TIC TAC toe" using React, animation routes with React Router v4 and Styled Components and ImmutableJS, GraphQL, Apollo, Jest, Storybook and a little magic.
+
+![Noughts and Daggers Screenshot](docs/demo.gif)
 
 ## Getting started
 

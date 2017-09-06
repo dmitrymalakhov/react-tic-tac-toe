@@ -10,3 +10,5 @@ module.exports.fastParseNumberFromString = string => string | 0;
 
 module.exports.isNumeric = maybeNumeric =>
   !isNaN(parseFloat(maybeNumeric)) && isFinite(maybeNumeric);
+
+module.exports.parseFloatRound2 = number => Math.round(number * 100) / 100;
