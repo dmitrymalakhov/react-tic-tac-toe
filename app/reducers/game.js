@@ -47,16 +47,15 @@ export default createReducer({
       score,
       costOfMove,
     }) => ({
-      ...state,
-      playingboard: List(initialMatrix(size)),
-      players,
-      score,
-      amountCellsToWin,
-      status: GAME_RUN,
-      size,
-      costOfMove,
-    }
-  ),
+    ...state,
+    playingboard: List(initialMatrix(size)),
+    players,
+    score,
+    amountCellsToWin,
+    status: GAME_RUN,
+    size,
+    costOfMove,
+  }),
   [toggleCellMode]: (state, { rowNum, cellNum }) => ({
     ...state,
     playingboard: state.playingboard.setIn(
