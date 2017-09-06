@@ -265,8 +265,27 @@ exports[`Storyshots GameInfoBox default props 1`] = `
 <div
   className="c0"
 >
-  <div
-    className="c1"
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #dddddd;
+}
+
+<div
+    className="c0"
   >
     <div
       className=""
@@ -279,8 +298,26 @@ exports[`Storyshots GameInfoBox default props 1`] = `
       0
     </div>
   </div>
-  <div
-    className="c2"
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div
+    className="c0"
   >
     <div
       className=""
@@ -311,8 +348,13 @@ exports[`Storyshots Input default props 1`] = `
   htmlFor={undefined}
 >
   
-  <input
-    className="c1"
+  .c0 {
+  margin: 10px;
+  display: inline-block;
+}
+
+<input
+    className="c0"
     id="input-0"
     onChange={[Function]}
     placeholder=""
@@ -362,51 +404,321 @@ exports[`Storyshots Playingboard default props 1`] = `
 <div
   className="c0"
 >
-  <div
-    className="c1"
+  .c1 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+    className="c0"
   >
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
   </div>
-  <div
-    className="c1"
+  .c1 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+    className="c0"
   >
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
   </div>
-  <div
-    className="c1"
+  .c1 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+<div
+    className="c0"
   >
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
-    <div
-      className="c2"
+    .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+      className="c0"
       onClick={[Function]}
     />
   </div>
@@ -470,16 +782,73 @@ exports[`Storyshots Row with Cells 1`] = `
 <div
   className="c0"
 >
-  <div
-    className="c1"
+  .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+    className="c0"
     onClick={[Function]}
   />
-  <div
-    className="c1"
+  .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+    className="c0"
     onClick={[Function]}
   />
-  <div
-    className="c1"
+  .c0 {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+<div
+    className="c0"
     onClick={[Function]}
   />
 </div>
