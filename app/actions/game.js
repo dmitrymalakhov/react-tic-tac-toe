@@ -115,3 +115,13 @@ export const restartGame = () => dispatch => {
   dispatch(resetGameState());
   dispatch(redirectToPath(CONFIGURE_ROUTE));
 };
+
+export const setTypeOfGame = createAction(
+  'SET_TYPE_OF_GAME',
+  type => ({ type }),
+);
+
+export const initTypeOfGame = type => dispatch => {
+  dispatch(setTypeOfGame(type));
+  dispatch(redirectToPath(CONFIGURE_ROUTE));
+};

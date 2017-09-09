@@ -9,11 +9,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 import { configureGame } from '../actions/game';
+import { redirectToPath } from '../actions/app';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import RouteContainer from '../containers/RouteContainer';
 import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
+import { CHOICE_TYPE_ROUTE } from '../constants/route';
 
 import {
   Player,
@@ -28,6 +30,7 @@ const propTypes = {
   size: PropTypes.number,
   amountCellsToWin: PropTypes.number,
   onConfigureGame: PropTypes.func,
+  onRedirectToPath: PropTypes.func,
 };
 
 const defaultProps = {
@@ -35,6 +38,7 @@ const defaultProps = {
   size: DEFAULT_SIZE_PLAYINGBOARD,
   amountCellsToWin: DEFAULT_SIZE_PLAYINGBOARD,
   onConfigureGame: noop,
+  onRedirectToPath: noop,
 };
 
 class ConfigureRoute extends PureComponent {
@@ -58,6 +62,10 @@ class ConfigureRoute extends PureComponent {
     );
 
     this.props.onConfigureGame(size, players, amountCellsToWin);
+  }
+
+  _handleClickRedirectToChoiceType = () => {
+    this.props.onRedirectToPath(CHOICE_TYPE_ROUTE);
   }
 
   _handleChangePlayerName1 = value => {
@@ -120,6 +128,10 @@ class ConfigureRoute extends PureComponent {
             label="To start the battle!"
             onClick={this._handleClickStartGame}
           />
+          <Button
+            label="To main"
+            onClick={this._handleClickRedirectToChoiceType}
+          />
         </ConfigureRouteContainer>
       </RouteContainer>
     );
@@ -139,6 +151,7 @@ const mapStateToProps = ({ game: { players, amountCellsToWin, size } }) => ({
 const mapDispatchToProps = dispatch => ({
   onConfigureGame: (size, players, amountCellsToWin) =>
     void dispatch(configureGame(size, players, amountCellsToWin)),
+  onRedirectToPath: path => void dispatch(redirectToPath(path)),
 });
 
 export default connect(

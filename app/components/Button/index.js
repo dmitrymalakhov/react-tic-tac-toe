@@ -11,16 +11,18 @@ import { noop } from '../../../utils/misc';
 
 const propTypes = {
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
 const defaultProps = {
   label: '',
+  disabled: false,
   onClick: noop,
 };
 
 const Button = props => (
-  <ButtonStyled onClick={props.onClick}>
+  <ButtonStyled onClick={props.onClick} disabled={props.disabled}>
     {props.label}
   </ButtonStyled>
 );

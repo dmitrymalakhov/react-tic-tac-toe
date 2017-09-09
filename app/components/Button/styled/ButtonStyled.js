@@ -12,9 +12,11 @@ import {
   borderStyle,
 } from 'polished';
 
-export const ButtonStyled = styled.div`
+export const ButtonStyled = styled.button`
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-color: white;
+  width: 200px;
   cursor: pointer;
   margin: 0;
   position: relative;
@@ -23,9 +25,15 @@ export const ButtonStyled = styled.div`
   vertical-align: middle;
   align-items: center;
   text-transform: uppercase;
+  justify-content: center;
   ${padding('15px', '15px', '15px', '15px')}
   ${borderStyle('solid')}
   ${borderColor('black')}
+
+  &:disabled {
+    ${borderColor('gray')}
+    ${borderStyle('solid')}
+  }
 
   &:hover {
     ${borderStyle('dotted')}

@@ -5,5 +5,14 @@
     "transform-class-properties",
     "transform-object-rest-spread",
     "syntax-dynamic-import"
-  ]
+  ],
+  "env": {
+    "production": {
+      "plugins": [
+        ["transform-react-remove-prop-types", {
+          "additionalLibraries": ["react-immutable-proptypes"],
+        }],
+      ]
+    }
+  }
 }

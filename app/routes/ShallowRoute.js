@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import AnimationRoute from './AnimationRoute';
-import RedirectToConfigureRoute from './RedirectToConfigureRoute';
+import RedirectToInitRoute from './RedirectToInitRoute';
 import { ROOT_ROUTE } from '../constants/route';
 
 const propTypes = {
@@ -56,7 +56,7 @@ class ShallowRoute extends PureComponent {
 
     return (
       <div>
-        <Route exact path="/" component={RedirectToConfigureRoute} />
+        <Route exact path={ROOT_ROUTE} component={RedirectToInitRoute} />
         <Route
           location={this.props.location}
           key={this.props.location.key}

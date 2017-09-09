@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import ConfigureRoute from './ConfigureRoute';
 import PlayingboardRoute from './PlayingboardRoute';
 import FinishRoute from './FinishRoute';
+import ChoiceTypeRoute from './ChoiceTypeRoute';
 import SCTransition from '../components/SCTransition';
 import asyncComponent from '../hoc/asyncComponent';
 
@@ -18,6 +19,7 @@ import {
   PLAYINGBOARD_ROUTE,
   FINISH_ROUTE,
   ABOUT_ROUTE,
+  CHOICE_TYPE_ROUTE,
 } from '../constants/route';
 
 const propTypes = {
@@ -43,6 +45,7 @@ const availableRoutes = {
   [CONFIGURE_ROUTE]: ConfigureRoute,
   [PLAYINGBOARD_ROUTE]: PlayingboardRoute,
   [FINISH_ROUTE]: FinishRoute,
+  [CHOICE_TYPE_ROUTE]: ChoiceTypeRoute,
   [ABOUT_ROUTE]: asyncComponent(AboutRoute),
 };
 

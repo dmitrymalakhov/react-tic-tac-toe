@@ -14,6 +14,7 @@ import {
   gameEnd,
   resetGameState,
   updateScore,
+  setTypeOfGame,
 } from '../actions/game';
 
 import {
@@ -55,6 +56,10 @@ export default createReducer({
     status: GAME_RUN,
     size,
     costOfMove,
+  }),
+  [setTypeOfGame]: (state, { type }) => ({
+    ...state,
+    type,
   }),
   [toggleCellMode]: (state, { rowNum, cellNum }) => ({
     ...state,
