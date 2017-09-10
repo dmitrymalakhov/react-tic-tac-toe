@@ -4,6 +4,8 @@ exports[`Storyshots Button default props 1`] = `
 .c0 {
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-color: white;
+  width: 200px;
   cursor: pointer;
   margin: 0;
   position: relative;
@@ -21,6 +23,10 @@ exports[`Storyshots Button default props 1`] = `
   -ms-flex-align: center;
   align-items: center;
   text-transform: uppercase;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding-top: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
@@ -35,6 +41,17 @@ exports[`Storyshots Button default props 1`] = `
   border-left-color: black;
 }
 
+.c0:disabled {
+  border-top-color: gray;
+  border-right-color: gray;
+  border-bottom-color: gray;
+  border-left-color: gray;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+}
+
 .c0:hover {
   border-top-style: dotted;
   border-right-style: dotted;
@@ -42,18 +59,21 @@ exports[`Storyshots Button default props 1`] = `
   border-left-style: dotted;
 }
 
-<div
+<button
   className="c0"
+  disabled={false}
   onClick={[Function]}
 >
   
-</div>
+</button>
 `;
 
 exports[`Storyshots Button with label 1`] = `
 .c0 {
   -webkit-appearance: none;
   -moz-appearance: none;
+  background-color: white;
+  width: 200px;
   cursor: pointer;
   margin: 0;
   position: relative;
@@ -71,6 +91,10 @@ exports[`Storyshots Button with label 1`] = `
   -ms-flex-align: center;
   align-items: center;
   text-transform: uppercase;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding-top: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
@@ -85,6 +109,17 @@ exports[`Storyshots Button with label 1`] = `
   border-left-color: black;
 }
 
+.c0:disabled {
+  border-top-color: gray;
+  border-right-color: gray;
+  border-bottom-color: gray;
+  border-left-color: gray;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+}
+
 .c0:hover {
   border-top-style: dotted;
   border-right-style: dotted;
@@ -92,12 +127,13 @@ exports[`Storyshots Button with label 1`] = `
   border-left-style: dotted;
 }
 
-<div
+<button
   className="c0"
+  disabled={false}
   onClick={[Function]}
 >
   Button
-</div>
+</button>
 `;
 
 exports[`Storyshots Cell default props 1`] = `
@@ -265,27 +301,8 @@ exports[`Storyshots GameInfoBox default props 1`] = `
 <div
   className="c0"
 >
-  .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #dddddd;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
   >
     <div
       className=""
@@ -298,26 +315,8 @@ exports[`Storyshots GameInfoBox default props 1`] = `
       0
     </div>
   </div>
-  .c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-<div
-    className="c0"
+  <div
+    className="c2"
   >
     <div
       className=""
@@ -335,25 +334,16 @@ exports[`Storyshots GameInfoBox default props 1`] = `
 
 exports[`Storyshots Input default props 1`] = `
 .c0 {
-  padding: 10px 1px;
-}
-
-.c1 {
   margin: 10px;
   display: inline-block;
 }
 
 <label
-  className="c0"
+  className=""
   htmlFor={undefined}
 >
   
-  .c0 {
-  margin: 10px;
-  display: inline-block;
-}
-
-<input
+  <input
     className="c0"
     id="input-0"
     onChange={[Function]}
@@ -404,321 +394,51 @@ exports[`Storyshots Playingboard default props 1`] = `
 <div
   className="c0"
 >
-  .c1 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
   >
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
   </div>
-  .c1 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
   >
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
   </div>
-  .c1 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
   >
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
-    .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-      className="c0"
+    <div
+      className="c2"
       onClick={[Function]}
     />
   </div>
@@ -782,73 +502,16 @@ exports[`Storyshots Row with Cells 1`] = `
 <div
   className="c0"
 >
-  .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
     onClick={[Function]}
   />
-  .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
     onClick={[Function]}
   />
-  .c0 {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  font-size: 2em;
-}
-
-<div
-    className="c0"
+  <div
+    className="c1"
     onClick={[Function]}
   />
 </div>
