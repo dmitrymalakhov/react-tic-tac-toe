@@ -38,7 +38,7 @@ const defaultProps = {
 
 const AboutRoute = () => import(
   /* webpackChunkName: 'about' */
-  './AboutRoute'
+  '../AboutRoute'
 );
 
 const availableRoutes = {

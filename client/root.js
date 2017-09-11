@@ -6,9 +6,12 @@
 
 import React from 'react';
 import styled from 'styled-components';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { injectGlobalStyle } from './styles/globalStyles';
 import ShallowRoute from './routes/ShallowRoute';
+import store from './store';
 
 injectGlobalStyle();
 
@@ -31,6 +34,13 @@ const Root = () => (
   </BrowserRouter>
 );
 
-Root.displayName = 'Root';
+const container = document.getElementById('container');
 
-export default Root;
+window.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Root />
+    </Provider>,
+    container
+  );
+});

@@ -1,31 +1,16 @@
 /**
-* @author Dmitry Malakhov
-*/
+ * @author Dmitry Malakhov
+ */
 
 'use strict';
 
-const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const express = require('express');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const webpackConfig = require('./build-conf/webpack.config');
-const { schema } = require('./data/schema.js');
-const { GRAPHQL_PORT, APP_PORT } = require('./constants/port');
-
-const graphQLServer = express();
-
-graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress({
-  schema,
-}));
-
-graphQLServer.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-}));
-
-graphQLServer.listen(GRAPHQL_PORT);
+const { APP_PORT } = require('../constants/port');
 
 const compiler = webpack(webpackConfig);
 compiler.apply(new DashboardPlugin());

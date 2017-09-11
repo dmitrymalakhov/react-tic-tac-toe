@@ -7,7 +7,7 @@
 /* eslint-env jest */
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Cell from '../app/components/Cell';
+import Cell from '../components/Cell';
 
 test('if click on Cell return position', () => {
   const mockFn = jest.fn();

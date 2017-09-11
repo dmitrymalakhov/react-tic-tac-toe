@@ -8,9 +8,9 @@ const { resolve } = require('path'),
   webpack = require('webpack'),
   omit = require('lodash.omit');
 
-const Package = require('../package.json');
+const Package = require('../../package.json');
 
-const PATH_SOURCES = resolve(__dirname, '../app');
+const PATH_SOURCES = resolve(__dirname, '../');
 const PATH_DIST = resolve(__dirname, '..', 'public');
 
 const dependencies = omit(Package.dependencies, [
@@ -35,7 +35,7 @@ const config = env => ({
     sourceMapFilename: '[name].map',
   },
   entry: {
-    main: ['./index'],
+    main: ['./root'],
     vendor: vendorChunks,
   },
   resolve: {

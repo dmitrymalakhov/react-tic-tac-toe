@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin'),
   webpack = require('webpack'),
   merge = require('webpack-merge'),
   { config, PATH_DIST } = require('./shared.config'),
-  { APP_PORT, GRAPHQL_PORT } = require('../constants/port');
+  { APP_PORT, GRAPHQL_PORT } = require('../../constants/port');
 
 const GRAPHQL_ENDPOINT = `http://0.0.0.0:${GRAPHQL_PORT}`;
 

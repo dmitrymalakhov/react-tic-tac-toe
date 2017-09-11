@@ -28,9 +28,9 @@ const NoopComponent = () => (
 );
 
 const containers = {
-  HOTSEAT: ConfigureHotseat,
-  PLAYER_VS_COMPUTER: NoopComponent,
-  MULTIPLAYER: NoopComponent,
+  [HOTSEAT]: ConfigureHotseat,
+  [PLAYER_VS_COMPUTER]: NoopComponent,
+  [MULTIPLAYER]: NoopComponent,
 };
 
 const ConfigureRoute = props => {
