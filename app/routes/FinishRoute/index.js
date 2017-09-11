@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { restartGame } from '../../actions/game';
 import Button from '../../components/Button';
-import RouteContainer from '../styled/RouteContainer';
+import RouteStyled from '../styled/RouteStyled';
 import FinishRouteStyled from './styled/FinishRouteStyled';
 import { PlayersPropTypes, PlayersDefaultProps } from '../../models/players';
 import { noop } from '../../../utils/misc';
@@ -36,12 +36,12 @@ class FinishRoute extends PureComponent {
       playerName = players.getIn([currentPlayer, 'name']);
 
     return (
-      <RouteContainer>
+      <RouteStyled>
         <FinishRouteStyled>
           Win {playerName}
           <Button label="Restart game" onClick={this._handleClickRestartGame} />
         </FinishRouteStyled>
-      </RouteContainer>
+      </RouteStyled>
     );
   }
 }

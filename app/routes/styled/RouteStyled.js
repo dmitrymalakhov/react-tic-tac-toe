@@ -6,9 +6,9 @@
 
 import styled from 'styled-components';
 
-const RouteContainerStyled = styled.div`
+const RouteStyled = styled.div`
   position: absolute;
   width: 100%;
 `;
 
-export default RouteContainerStyled;
+export default RouteStyled;

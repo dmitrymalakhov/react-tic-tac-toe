@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../../components/Button';
 import ChoiceTypeRouteStyled from './styled/ChoiceTypeRouteStyled';
-import RouteContainer from '../styled/RouteContainer';
+import RouteStyled from '../styled/RouteStyled';
 import { initTypeOfGame } from '../../actions/game';
 import { noop } from '../../../utils/misc';
 
@@ -42,7 +42,7 @@ class ChoiceTypeRoute extends PureComponent {
 
   render() {
     return (
-      <RouteContainer>
+      <RouteStyled>
         <ChoiceTypeRouteStyled>
           <Button
             key="hotseat"
@@ -62,7 +62,7 @@ class ChoiceTypeRoute extends PureComponent {
             disabled
           />
         </ChoiceTypeRouteStyled>
-      </RouteContainer>
+      </RouteStyled>
     );
   }
 }

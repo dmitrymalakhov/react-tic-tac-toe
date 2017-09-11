@@ -12,7 +12,7 @@ import { changeCellMode } from '../../actions/game';
 import Button from '../../components/Button';
 import GameInfo from '../../components/GameInfo';
 import Playingboard from '../../components/Playingboard';
-import RouteContainer from '../styled/RouteContainer';
+import RouteStyled from '../styled/RouteStyled';
 import { PlayersPropTypes, PlayersDefaultProps } from '../../models/players';
 import { ScorePropTypes, ScoreDefaultProps } from '../../models/score';
 
@@ -59,7 +59,7 @@ class PlayingboardRoute extends Component {
     } = this.props;
 
     return (
-      <RouteContainer>
+      <RouteStyled>
         <PlayingboardRouteStyled>
           <GameInfo
             players={players}
@@ -75,7 +75,7 @@ class PlayingboardRoute extends Component {
             onClick={this._handleRedirectToConfigure}
           />
         </PlayingboardRouteStyled>
-      </RouteContainer>
+      </RouteStyled>
     );
   }
 }

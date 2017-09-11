@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import RouteContainer from '../styled/RouteContainer';
+import RouteStyled from '../styled/RouteStyled';
 import ConfigureRouteStyled from './styled/ConfigureRouteStyled';
 import ConfigureHotseat from '../../containers/ConfigureHotseat';
 
@@ -37,11 +37,11 @@ const ConfigureRoute = props => {
   const ConfigureContainer = containers[props.type];
 
   return (
-    <RouteContainer>
+    <RouteStyled>
       <ConfigureRouteStyled>
         <ConfigureContainer />
       </ConfigureRouteStyled>
-    </RouteContainer>
+    </RouteStyled>
   );
 };
 

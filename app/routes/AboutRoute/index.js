@@ -5,12 +5,12 @@
 'use strict';
 
 import React from 'react';
-import RouteContainer from '../styled/RouteContainer';
+import RouteStyled from '../styled/RouteStyled';
 
 const AboutRoute = () => (
-  <RouteContainer>
+  <RouteStyled>
     <p>It route dynamic imports</p>
-  </RouteContainer>
+  </RouteStyled>
 );
 
 export default AboutRoute;
