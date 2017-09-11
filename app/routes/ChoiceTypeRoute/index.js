@@ -7,17 +7,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Button from '../components/Button';
-import ChoiceTypeRouteContainer from '../containers/ChoiceTypeRouteContainer';
-import RouteContainer from '../containers/RouteContainer';
-import { initTypeOfGame } from '../actions/game';
-import { noop } from '../../utils/misc';
+import Button from '../../components/Button';
+import ChoiceTypeRouteStyled from './styled/ChoiceTypeRouteStyled';
+import RouteContainer from '../styled/RouteContainer';
+import { initTypeOfGame } from '../../actions/game';
+import { noop } from '../../../utils/misc';
 
 import {
   HOTSEAT,
   PLAYER_VS_COMPUTER,
   MULTIPLAYER,
-} from '../constants/game';
+} from '../../constants/game';
 
 const propTypes = {
   onInitTypeOfGame: PropTypes.func,
@@ -43,7 +43,7 @@ class ChoiceTypeRoute extends PureComponent {
   render() {
     return (
       <RouteContainer>
-        <ChoiceTypeRouteContainer>
+        <ChoiceTypeRouteStyled>
           <Button
             key="hotseat"
             label="Player vs Player"
@@ -61,7 +61,7 @@ class ChoiceTypeRoute extends PureComponent {
             onClick={this._handleClickMultiplayer}
             disabled
           />
-        </ChoiceTypeRouteContainer>
+        </ChoiceTypeRouteStyled>
       </RouteContainer>
     );
   }

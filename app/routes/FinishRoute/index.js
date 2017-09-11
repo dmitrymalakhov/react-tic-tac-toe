@@ -7,12 +7,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { restartGame } from '../actions/game';
-import Button from '../components/Button';
-import RouteContainer from '../containers/RouteContainer';
-import FinishRouteContainer from '../containers/FinishRouteContainer';
-import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
-import { noop } from '../../utils/misc';
+import { restartGame } from '../../actions/game';
+import Button from '../../components/Button';
+import RouteContainer from '../styled/RouteContainer';
+import FinishRouteStyled from './styled/FinishRouteStyled';
+import { PlayersPropTypes, PlayersDefaultProps } from '../../models/players';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   players: PlayersPropTypes,
@@ -37,10 +37,10 @@ class FinishRoute extends PureComponent {
 
     return (
       <RouteContainer>
-        <FinishRouteContainer>
+        <FinishRouteStyled>
           Win {playerName}
           <Button label="Restart game" onClick={this._handleClickRestartGame} />
-        </FinishRouteContainer>
+        </FinishRouteStyled>
       </RouteContainer>
     );
   }

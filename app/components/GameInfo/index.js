@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { PlayersPropTypes, PlayersDefaultProps } from '../../models/players';
 import { ScorePropTypes, ScoreDefaultProps } from '../../models/score';
 import UserInfo from './UserInfo';
-import GameInfoBoxStyled from './styled/GameInfoBoxStyled';
+import GameInfoStyled from './styled/GameInfoStyled';
 
 const propTypes = {
   players: PlayersPropTypes,
@@ -23,7 +23,7 @@ const defaultProps = {
   currentPlayer: 0,
 };
 
-const GameInfoBox = ({ players, score, currentPlayer }) => {
+const GameInfo = ({ players, score, currentPlayer }) => {
   const usersInformation = players.map((player, index) => (
     <UserInfo
       key={player.name}
@@ -34,14 +34,14 @@ const GameInfoBox = ({ players, score, currentPlayer }) => {
   ));
 
   return (
-    <GameInfoBoxStyled>
+    <GameInfoStyled>
       {usersInformation}
-    </GameInfoBoxStyled>
+    </GameInfoStyled>
   );
 };
 
-GameInfoBox.propTypes = propTypes;
-GameInfoBox.defaultProps = defaultProps;
-GameInfoBox.displayName = 'GameInfoBox';
+GameInfo.propTypes = propTypes;
+GameInfo.defaultProps = defaultProps;
+GameInfo.displayName = 'GameInfo';
 
-export default GameInfoBox;
+export default GameInfo;

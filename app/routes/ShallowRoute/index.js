@@ -8,9 +8,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import AnimationRoute from './AnimationRoute';
-import RedirectToInitRoute from './RedirectToInitRoute';
-import { ROOT_ROUTE } from '../constants/route';
+import AnimationRoute from '../AnimationRoute';
+import RedirectToInitRoute from '../RedirectToInitRoute';
+import { ROOT_ROUTE } from '../../constants/route';
 
 const propTypes = {
   routeName: PropTypes.string,

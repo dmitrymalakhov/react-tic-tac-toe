@@ -6,12 +6,12 @@
 
 import styled from 'styled-components';
 
-const ChoiceTypeRouteContainer = styled.div`
-  height: 200px;
+const ConfigureRouteStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  height: 400px;
 `;
 
-export default ChoiceTypeRouteContainer;
+export default ConfigureRouteStyled;

@@ -244,7 +244,7 @@ exports[`Storyshots Cell with position 1`] = `
 />
 `;
 
-exports[`Storyshots GameInfoBox default props 1`] = `
+exports[`Storyshots GameInfo default props 1`] = `
 .c1 {
   display: -webkit-box;
   display: -webkit-flex;

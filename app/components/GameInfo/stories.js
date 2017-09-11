@@ -7,9 +7,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import GameInfoBox from './';
+import GameInfo from './';
 
 const onClickAction = action('onClick');
 
-storiesOf('GameInfoBox', module)
-  .add('default props', () => <GameInfoBox onClick={onClickAction} />);
+storiesOf('GameInfo', module)
+  .add('default props', () => <GameInfo onClick={onClickAction} />);

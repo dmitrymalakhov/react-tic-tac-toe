@@ -12,8 +12,7 @@ import { configureGame } from '../actions/game';
 import { redirectToPath } from '../actions/app';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import RouteContainer from '../containers/RouteContainer';
-import ConfigureRouteContainer from '../containers/ConfigureRouteContainer';
+
 import { DEFAULT_SIZE_PLAYINGBOARD } from '../constants/game';
 import { CHOICE_TYPE_ROUTE } from '../constants/route';
 
@@ -41,7 +40,7 @@ const defaultProps = {
   onRedirectToPath: noop,
 };
 
-class ConfigureRoute extends PureComponent {
+class ConfigureHotseatRoute extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -97,50 +96,52 @@ class ConfigureRoute extends PureComponent {
   }
 
   render() {
-    return (
-      <RouteContainer>
-        <ConfigureRouteContainer>
-          <Input
-            label="Player #1"
-            placeholder="Name"
-            value={this.state.playerName1}
-            onChange={this._handleChangePlayerName1}
-          />
-          <Input
-            label="Player #2"
-            placeholder="Name"
-            value={this.state.playerName2}
-            onChange={this._handleChangePlayerName2}
-          />
-          <Input
-            label="Size"
-            placeholder="Default size: 3"
-            value={this.state.size}
-            onChange={this._handleChangeSize}
-          />
-          <Input
-            label="Cells to win"
-            placeholder="Default cells to win: 3"
-            value={this.state.amountCellsToWin}
-            onChange={this._handleChangeAmountCellToWin}
-          />
-          <Button
-            label="To start the battle!"
-            onClick={this._handleClickStartGame}
-          />
-          <Button
-            label="To main"
-            onClick={this._handleClickRedirectToChoiceType}
-          />
-        </ConfigureRouteContainer>
-      </RouteContainer>
-    );
+    return ([
+      <Input
+        key="player1"
+        label="Player #1"
+        placeholder="Name"
+        value={this.state.playerName1}
+        onChange={this._handleChangePlayerName1}
+      />,
+      <Input
+        key="player2"
+        label="Player #2"
+        placeholder="Name"
+        value={this.state.playerName2}
+        onChange={this._handleChangePlayerName2}
+      />,
+      <Input
+        key="size"
+        label="Size"
+        placeholder="Default size: 3"
+        value={this.state.size}
+        onChange={this._handleChangeSize}
+      />,
+      <Input
+        key="cellstowin"
+        label="Cells to win"
+        placeholder="Default cells to win: 3"
+        value={this.state.amountCellsToWin}
+        onChange={this._handleChangeAmountCellToWin}
+      />,
+      <Button
+        key="start"
+        label="To start the battle!"
+        onClick={this._handleClickStartGame}
+      />,
+      <Button
+        key="tomain"
+        label="To main"
+        onClick={this._handleClickRedirectToChoiceType}
+      />,
+    ]);
   }
 }
 
-ConfigureRoute.propTypes = propTypes;
-ConfigureRoute.defaultProps = defaultProps;
-ConfigureRoute.displayName = 'ConfigureRoute';
+ConfigureHotseatRoute.propTypes = propTypes;
+ConfigureHotseatRoute.defaultProps = defaultProps;
+ConfigureHotseatRoute.displayName = 'ConfigureHotseatRoute';
 
 const mapStateToProps = ({ game: { players, amountCellsToWin, size } }) => ({
   players,
@@ -157,4 +158,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ConfigureRoute);
+)(ConfigureHotseatRoute);

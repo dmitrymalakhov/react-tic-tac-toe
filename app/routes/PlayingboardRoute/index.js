@@ -7,25 +7,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { redirectToPath } from '../actions/app';
-import { changeCellMode } from '../actions/game';
-import Button from '../components/Button';
-import GameInfoBox from '../components/GameInfoBox';
-import Playingboard from '../components/Playingboard';
-import RouteContainer from '../containers/RouteContainer';
-import { PlayersPropTypes, PlayersDefaultProps } from '../models/players';
-import { ScorePropTypes, ScoreDefaultProps } from '../models/score';
+import { redirectToPath } from '../../actions/app';
+import { changeCellMode } from '../../actions/game';
+import Button from '../../components/Button';
+import GameInfo from '../../components/GameInfo';
+import Playingboard from '../../components/Playingboard';
+import RouteContainer from '../styled/RouteContainer';
+import { PlayersPropTypes, PlayersDefaultProps } from '../../models/players';
+import { ScorePropTypes, ScoreDefaultProps } from '../../models/score';
 
 import {
   PlayingboardPropTypes,
   PlayingboardDefaultProps,
-} from '../models/playingboard';
+} from '../../models/playingboard';
 
-import PlayingboardRouteContainer from
-  '../containers/PlayingboardRouteContainer';
+import PlayingboardRouteStyled from './styled/PlayingboardRouteStyled';
 
-import { CONFIGURE_ROUTE } from '../constants/route';
-import { noop } from '../../utils/misc';
+import { CONFIGURE_ROUTE } from '../../constants/route';
+import { noop } from '../../../utils/misc';
 
 const propTypes = {
   playingboard: PlayingboardPropTypes,
@@ -61,8 +60,8 @@ class PlayingboardRoute extends Component {
 
     return (
       <RouteContainer>
-        <PlayingboardRouteContainer>
-          <GameInfoBox
+        <PlayingboardRouteStyled>
+          <GameInfo
             players={players}
             score={score}
             currentPlayer={currentPlayer}
@@ -75,7 +74,7 @@ class PlayingboardRoute extends Component {
             label="Back to configure"
             onClick={this._handleRedirectToConfigure}
           />
-        </PlayingboardRouteContainer>
+        </PlayingboardRouteStyled>
       </RouteContainer>
     );
   }
