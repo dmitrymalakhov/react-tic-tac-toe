@@ -1,3 +1,5 @@
+const { PubSub } = require('graphql-subscriptions');
+
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -11,6 +13,8 @@ const {
   getAllStatistic,
   getStatisticById,
 } = require('./database');
+
+const pubsub = new PubSub();
 
 const { isUndef } = require('../../utils/misc');
 
@@ -27,13 +31,24 @@ const StatisticItem = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: {
-    createStatistic: {
+    addStatistic: {
       type: StatisticItem,
       args: {
         score: { type: GraphQLInt },
       },
-      resolve(root, { score }) {
-        return addStatisticsPlayedGame('p1', 'p2', 0, score);
+      resolve(root, { score, broadcast }, context) {
+        const entry = addStatisticsPlayedGame('p1', 'p2', 0, score);
+        console.log(broadcast, context);
+        pubsub.publish(
+          'newStatistic',
+          {
+            entry,
+            authToken: context.authToken,
+            broadcast,
+          },
+        );
+
+        return entry;
       },
     },
   },
@@ -56,7 +71,26 @@ const Query = new GraphQLObjectType({
   },
 });
 
+const Subscription = new GraphQLObjectType({
+  name: 'Subscription',
+  fields: {
+    newStatistic: {
+      type: StatisticItem,
+      args: {
+        score: { type: GraphQLInt },
+      },
+      resolve(message, variables, context, subscription) {
+        console.log(`Serving subscription for user ${variables.userId}`);
+        return message.entry;
+      }
+    }
+  }
+})
+
 module.exports.schema = new GraphQLSchema({
   query: Query,
   mutation: Mutation,
+  subscription: Subscription,
 });
+
+module.exports.pubsub = pubsub;
