@@ -4,49 +4,37 @@
 
 'use strict';
 
-const { createServer } = require('http');
-const express = require('express');
-const bodyParser = require('body-parser');
-const { SubscriptionServer } = require('subscriptions-transport-ws');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { schema } = require('./data/schema.js');
-const { GRAPHQL_PORT } = require('../constants/port');
-const { execute, subscribe } = require('graphql');
+const { createServer } = require('http'),
+  express = require('express'),
+  bodyParser = require('body-parser'),
+  { SubscriptionServer } = require('subscriptions-transport-ws'),
+  { graphqlExpress, graphiqlExpress } = require('apollo-server-express'),
+  { schema } = require('./data/schema.js'),
+  { GRAPHQL_PORT, WS_PORT } = require('../constants/port'),
+  { execute, subscribe } = require('graphql'),
+  cors = require('cors');
 
-const appWS = createServer((request, response) => {
-  response.writeHead(404);
-  response.end();
-});
-
-const subscriptionServer = new SubscriptionServer(
-  {
-    schema,
-    execute,
-    subscribe,
-  }, {
-    server: appWS,
-    path: '/',
-  }
-);
-
-appWS.listen(5000, () => {
-  console.log('Websocket listening on port 5000');
-});
-
+const endpointURL = '/graphql';
+const path = '/subscriptions';
+const subscriptionsEndpoint = `ws://0.0.0.0:${WS_PORT}${path}`;
 const graphQLServer = express();
 
-graphQLServer.use('/graphql', bodyParser.json(), graphqlExpress(request =>
-  ({
-    schema,
-    context: {
-      authToken: parseInt(request.headers.authtoken, 10),
-    },
-  })
-));
+graphQLServer.use('*', cors({ origin: `http://0.0.0.0:${GRAPHQL_PORT}` }));
+
+graphQLServer.use(endpointURL, bodyParser.json(), graphqlExpress({ schema }));
 
 graphQLServer.use('/graphiql', graphiqlExpress({
-  endpointURL: '/graphql',
-  subscriptionsEndpoint: 'ws://localhost:5000/',
+  endpointURL,
+  subscriptionsEndpoint,
 }));
 
 graphQLServer.listen(GRAPHQL_PORT);
+
+const server = createServer(graphQLServer);
+
+server.listen(WS_PORT);
+
+const subscriptionServer = new SubscriptionServer(
+  { execute, subscribe, schema },
+  { server, path },
+);

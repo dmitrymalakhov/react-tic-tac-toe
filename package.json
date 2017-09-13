@@ -39,6 +39,7 @@
   "homepage": "https://github.com/dmitrymalakhov/noughtsanddaggers#readme",
   "dependencies": {
     "apollo-server-express": "^1.1.2",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
     "graphql": "^0.11.3",
     "graphql-subscriptions": "^0.4.4",
@@ -47,6 +48,7 @@
     "polished": "^1.7.0",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-apollo": "^1.4.15",
     "react-dom": "^15.6.1",
     "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^5.0.6",

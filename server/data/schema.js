@@ -1,4 +1,5 @@
 const { PubSub } = require('graphql-subscriptions');
+const { withFilter } = require('graphql-subscriptions');
 
 const {
   GraphQLSchema,
@@ -36,16 +37,12 @@ const Mutation = new GraphQLObjectType({
       args: {
         score: { type: GraphQLInt },
       },
-      resolve(root, { score, broadcast }, context) {
-        const entry = addStatisticsPlayedGame('p1', 'p2', 0, score);
-        console.log(broadcast, context);
+      resolve(root, { message }, context) {
+        const entry = addStatisticsPlayedGame('p1', 'p2', 0, 100);
+        console.log('message', message);
         pubsub.publish(
           'newStatistic',
-          {
-            entry,
-            authToken: context.authToken,
-            broadcast,
-          },
+          entry
         );
 
         return entry;
@@ -76,11 +73,15 @@ const Subscription = new GraphQLObjectType({
   fields: {
     newStatistic: {
       type: StatisticItem,
-      args: {
-        score: { type: GraphQLInt },
-      },
+      subscribe: withFilter(
+        () => pubsub.asyncIterator('addStatistic'),
+        (payload, variables) => {
+          console.log('payload', payload);
+          return payload.channelId === variables.channelId;
+        }
+      ),
       resolve(message, variables, context, subscription) {
-        console.log(`Serving subscription for user ${variables.userId}`);
+        console.log(`Serving subscription for user ${variables}`);
         return message.entry;
       }
     }
