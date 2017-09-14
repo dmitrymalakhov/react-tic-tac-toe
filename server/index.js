@@ -6,13 +6,13 @@
 
 const { createServer } = require('http'),
   express = require('express'),
+  cors = require('cors'),
   bodyParser = require('body-parser'),
   { SubscriptionServer } = require('subscriptions-transport-ws'),
   { graphqlExpress, graphiqlExpress } = require('apollo-server-express'),
-  { schema } = require('./data/schema.js'),
-  { GRAPHQL_PORT, WS_PORT } = require('../constants/port'),
   { execute, subscribe } = require('graphql'),
-  cors = require('cors');
+  schema = require('./data/schema'),
+  { GRAPHQL_PORT, WS_PORT } = require('../constants/port');
 
 const endpointURL = '/graphql';
 const path = '/subscriptions';
