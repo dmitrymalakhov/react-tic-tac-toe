@@ -1,4 +1,4 @@
-# Noughts and Daggers
+# Tic-tac-toe
 
 ![Build Status](https://travis-ci.org/dmitrymalakhov/noughtsanddaggers.svg?branch=master)
 [![Coverage Status](https://coveralls.io/repos/github/dmitrymalakhov/noughtsanddaggers/badge.svg?branch=master)](https://coveralls.io/github/dmitrymalakhov/noughtsanddaggers?branch=master)
