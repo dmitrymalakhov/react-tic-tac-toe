@@ -189,7 +189,7 @@ export const countInitScores = (size, players, amountCellsToWin) => List(
 );
 
 export const countCostOfMove = (size, players, score) =>
-  score.map(score => score / ((size ** 2) / 2));
+  score.map(score => score / ((size * size) / 2));
 
 export const recalculateScore = (score, costOfMove, currentPlayer) =>
   score.update(

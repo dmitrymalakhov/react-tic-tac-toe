@@ -19,7 +19,7 @@ module.exports = merge.smart(config('development'), {
       'webpack/hot/dev-server',
     ],
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-maps',
   profile: false,
   output: {
     pathinfo: true,
